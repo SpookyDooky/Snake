@@ -29,6 +29,8 @@ public class GameBoard {
     public void init(){
         initTiles();
         linkTiles();
+        linkAroundTiles();
+        linkCornersAround();
     }
 
     private void initTiles(){
@@ -64,7 +66,15 @@ public class GameBoard {
     }
 
     private void linkAroundTiles(){
+        for(int x = 1; x < this.width - 1;x++){
+            tileAt(x,0).getMoveMap().put(Direction.North,tileAt(x,this.height - 1));
+            tileAt(x,this.height-1).getMoveMap().put(Direction.South,tileAt(x,0));
+        }
 
+        for(int y = 1; y < this.height -1;y++){
+            tileAt(0,y).getMoveMap().put(Direction.West,tileAt(this.width-1,y));
+            tileAt(this.width-1,y).getMoveMap().put(Direction.East,tileAt(0,y));
+        }
     }
 
     private void linkCornersAround(){
