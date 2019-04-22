@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class SnakeGame extends Application {
 
     private static SnakeGame gameInstance;
@@ -49,7 +51,18 @@ public class SnakeGame extends Application {
         return this.mainStage;
     }
 
-    public void launchGame(){
-
+    public void launchGame(String mapName){
+        if(game.getGameState() != State.InMenus){
+            System.out.println("Something went wrong");
+        } else {
+            this.game.setMap(mapName);
+            this.game.setGameState(State.InitializingGame);
+            try {
+                this.game.startGame();
+            } catch (IOException e) {
+                System.out.println("Couldn't find a map with that name!");
+                e.printStackTrace();
+            }
+        }
     }
 }

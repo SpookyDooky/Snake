@@ -43,13 +43,15 @@ public class GameBoard {
 
     private void initGame(){
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("maps" + File.separator + this.mapName)));
+
+            BufferedReader reader = new BufferedReader(new FileReader(new File("src\\maps\\" + this.mapName)));
             String dimensions = reader.readLine();
             String[] splitted = dimensions.split(" ");
 
             this.width = Integer.valueOf(splitted[0]);
             this.height = Integer.valueOf(splitted[1]);
             this.charGrid = new char[this.width][this.height];
+            this.tileGrid = new Tile[width][height];
 
             for(int y = 0; y < this.height;y++){
                 String line = reader.readLine();
