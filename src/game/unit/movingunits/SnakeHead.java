@@ -8,8 +8,8 @@ public class SnakeHead extends MovingUnit {
 
     private int length;
 
-    public SnakeHead(){
-        super(50,50,Direction.South);
+    public SnakeHead(int x, int y){
+        super(x,y,Direction.South);
         this.length = 4;
     }
 
