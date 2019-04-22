@@ -1,5 +1,7 @@
 package game.board;
 
+import game.Direction;
+
 public class GameBoard {
 
     private int width;
@@ -13,6 +15,7 @@ public class GameBoard {
         this.height = height;
         this.spawnpoint = spawnpoint;
         this.tileGrid = new Tile[width][height];
+        init();
     }
 
     public int getWidth(){
@@ -24,7 +27,7 @@ public class GameBoard {
     }
 
     public void init(){
-
+        initTiles();
     }
 
     private void initTiles(){
@@ -39,6 +42,18 @@ public class GameBoard {
         for(int x = 0; x < width;x++){
             for(int y = 0; y < height; y++){
 
+            }
+        }
+    }
+
+    private void linkTile(Tile current){
+        for(Direction direction : Direction.values()){
+            Coordinate currentCoordinate = current.getCoordinate();
+            int newX = currentCoordinate.getX() + direction.getDeltX();
+            int newY = currentCoordinate.getY() + direction.getDeltY();
+
+            if(newX >= 0 && newX < this.width && newY >= 0 && newY < this.height){
+                current.getMoveMap().put(direction,tileAt(newX,newY));
             }
         }
     }

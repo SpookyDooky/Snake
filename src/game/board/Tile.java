@@ -52,6 +52,17 @@ public class Tile {
         this.coordinate = coordinate;
     }
 
+    public HashMap<Direction,Tile> getMoveMap(){
+        return this.moveMap;
+    }
+
+    public ArrayList<Unit> getOccupants(){
+        return this.occupants;
+    }
+
+    public Coordinate getCoordinate(){
+        return this.coordinate;
+    }
     /**
      * Method for making moving easier, so that we immediately know the next tile
      * @param direction - The direction that you want to know
