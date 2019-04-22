@@ -18,7 +18,7 @@ public class MainMenu extends MenuScene{
         playButton.setMinWidth(300);
         playButton.setMaxWidth(300);
         playButton.setLayoutX(250);
-        playButton.setLayoutY(100);
+        playButton.setLayoutY(75);
 
         playButton.setOnMouseClicked(event -> {
             System.out.println("Routing to the map selection");
