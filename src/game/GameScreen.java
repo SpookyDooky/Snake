@@ -50,6 +50,7 @@ public class GameScreen extends JFrame {
             @Override
             public void paintComponent(Graphics g) {
                 //Needs to be brushed up for the correct scaling, this is only temporarily
+                super.paintComponent(g);
                 Tile[][] gameField =  SnakeGame.getGameInstance().getGame().getGameBoard().getTileGrid();
                 int gameWidth = SnakeGame.getGameInstance().getGame().getGameBoard().getWidth();
                 int gameHeight = SnakeGame.getGameInstance().getGame().getGameBoard().getHeight();
@@ -78,6 +79,8 @@ public class GameScreen extends JFrame {
                                 }
                             }
                         }
+
+                        g.fillRect(blockWidth * x,blockHeight * y,blockWidth,blockHeight);
                     }
                 }
             }
