@@ -1,6 +1,8 @@
 package game;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GameScreen extends JFrame {
 
@@ -11,9 +13,20 @@ public class GameScreen extends JFrame {
         this.width = width;
         this.height = height;
         this.setSize(width,height);
+        this.setVisible(true);
+        init();
     }
 
-    private void init(){
-
+    public void init(){
+        GameScreen test = this;
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getExtendedKeyCode() == KeyEvent.VK_ESCAPE){
+                    test.dispose();
+                    SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
+                }
+            }
+        });
     }
 }

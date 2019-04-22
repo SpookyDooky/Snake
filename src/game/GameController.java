@@ -1,17 +1,15 @@
 package game;
 
 import game.board.GameBoard;
-
-import java.io.File;
 import java.io.IOException;
 
-public class GameController {
+public class GameController{
 
     private String mapName;
 
     private State gameState;
     private GameBoard gameBoard;
-
+    private GameScreen screen;
     private int score;
 
     public GameController(){
@@ -48,13 +46,15 @@ public class GameController {
     }
 
     public void startGame() throws IOException {
-        File check = new File("maps" + File.separator + mapName);
+        this.gameBoard = new GameBoard(this.mapName); //Loads up the map
+        this.screen = new GameScreen(1000,1000);
 
-        this.gameBoard = new GameBoard(this.mapName);
+        resetScore(); //Resets the score
         start();
     }
 
     public void start(){
-
+        //TODO - Run game logic
+        //TODO - Render
     }
 }
