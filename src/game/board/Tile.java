@@ -28,6 +28,14 @@ public class Tile {
         this.isBorder = true;
     }
 
+    /**
+     * Constructor for regular tiles
+     * @param occupants - Occupants of that tile
+     * @param moveMap - The map of the neighbours
+     * @param isBorder - Checks if its a border
+     * @param x - x value
+     * @param y - y value
+     */
     public Tile(ArrayList<Unit> occupants, HashMap<Direction,Tile> moveMap, boolean isBorder, int x, int y){
         this.occupants = occupants;
         this.moveMap = moveMap;
@@ -36,6 +44,18 @@ public class Tile {
         this.y = y;
     }
 
+    /**
+     * Method for making moving easier, so that we immediately know the next tile
+     * @param direction - The direction that you want to know
+     * @return - The square in that direction
+     */
+    public Tile tileAt(Direction direction){
+        return moveMap.get(direction);
+    }
+
+    /**
+     * Equals function, speaks for itself
+     */
     public boolean equals(Object other){
         if(other instanceof Tile){
             Tile otherTile = (Tile) other;
