@@ -8,6 +8,7 @@ public class MainMenu extends MenuScene{
     public MainMenu(Pane rootpane){
         super(rootpane);
         setupPlayButton();
+        setupHighscoreButton();
     }
 
     private void setupPlayButton(){
@@ -25,5 +26,21 @@ public class MainMenu extends MenuScene{
             //Map selection screen
         });
         this.getRootPane().getChildren().add(playButton);
+    }
+
+    private void setupHighscoreButton(){
+        Button highscore = new Button();
+        highscore.setText("Highscores");
+        highscore.setMinHeight(50);
+        highscore.setMaxHeight(50);
+        highscore.setMinWidth(300);
+        highscore.setMaxWidth(300);
+        highscore.setLayoutX(250);
+        highscore.setLayoutY(200);
+
+        highscore.setOnMouseClicked(event -> {
+            System.out.println("Show highscores");
+        });
+        this.getRootPane().getChildren().add(highscore);
     }
 }
