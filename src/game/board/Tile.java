@@ -11,8 +11,7 @@ public class Tile {
     private ArrayList<Unit> occupants;
     private HashMap<Direction,Tile> moveMap;
     private boolean isBorder;
-    private int x;
-    private int y;
+    private Coordinate coordinate;
 
     /**
      * Constructor for creating walls
@@ -33,15 +32,13 @@ public class Tile {
      * @param occupants - Occupants of that tile
      * @param moveMap - The map of the neighbours
      * @param isBorder - Checks if its a border
-     * @param x - x value
-     * @param y - y value
+     * @param coordinate - Coordinate of the tile
      */
-    public Tile(ArrayList<Unit> occupants, HashMap<Direction,Tile> moveMap, boolean isBorder, int x, int y){
+    public Tile(ArrayList<Unit> occupants, HashMap<Direction,Tile> moveMap, boolean isBorder, Coordinate coordinate){
         this.occupants = occupants;
         this.moveMap = moveMap;
         this.isBorder = isBorder;
-        this.x = x;
-        this.y = y;
+        this.coordinate = coordinate;
     }
 
     /**
@@ -59,7 +56,7 @@ public class Tile {
     public boolean equals(Object other){
         if(other instanceof Tile){
             Tile otherTile = (Tile) other;
-            return this.x == otherTile.x && this.y == otherTile.y;
+            return this.coordinate.equals(otherTile.coordinate);
         } else {
             return false;
         }
