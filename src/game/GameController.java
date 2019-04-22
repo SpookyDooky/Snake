@@ -46,10 +46,15 @@ public class GameController {
     public void incrementScore(){
         this.score++;
     }
+
     public void startGame() throws IOException {
         File check = new File("maps" + File.separator + mapName);
 
         this.gameBoard = new GameBoard(this.mapName);
+        start();
+    }
+
+    public void start(){
 
     }
 }
