@@ -28,6 +28,7 @@ public class GameBoard {
 
     public void init(){
         initTiles();
+        linkTiles();
     }
 
     private void initTiles(){
@@ -41,7 +42,7 @@ public class GameBoard {
     private void linkTiles(){
         for(int x = 0; x < width;x++){
             for(int y = 0; y < height; y++){
-
+                linkTile(tileAt(x,y));
             }
         }
     }
