@@ -2,11 +2,9 @@ package game.board;
 
 import game.Direction;
 import game.unit.MovingUnit;
-import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class GameBoard {
 
