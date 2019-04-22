@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 public class SnakeGame extends Application {
 
     private static SnakeGame gameInstance;
+    private GameController game;
 
     private Stage mainStage;
     private Scene mainScene;
@@ -30,6 +31,9 @@ public class SnakeGame extends Application {
             System.out.println("Shutting down game...");
             Platform.exit();
         });
+
+        this.game = new GameController();
+        this.game.setGameState(State.InMenus);
     }
 
     private void launchMenu(){
@@ -43,5 +47,9 @@ public class SnakeGame extends Application {
 
     public Stage getMainStage(){
         return this.mainStage;
+    }
+
+    public void launchGame(){
+
     }
 }
