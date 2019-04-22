@@ -24,6 +24,9 @@ public class MapSelection extends MenuScene {
         mapButton.setLayoutX(250);
         mapButton.setLayoutY(75);
 
+        mapButton.setOnMouseClicked(event -> {
+            SnakeGame.getGameInstance().launchGame("standardmap");
+        });
         this.getRootPane().getChildren().add(mapButton);
     }
 
