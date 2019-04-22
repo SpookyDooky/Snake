@@ -6,8 +6,8 @@ import javafx.scene.text.Font;
 
 public class MenuScene extends Scene {
 
-    private int width = 1000;
-    private int height = 1000;
+    private int width = 800;
+    private int height = 800;
 
     private Font defaultFont = new Font("arial", 30);
     private Pane rootPane;
@@ -18,5 +18,13 @@ public class MenuScene extends Scene {
         this.rootPane = root;
         root.setMinWidth(width);
         root.setMinHeight(height);
+    }
+
+    private void setupScaler(){
+
+    }
+    
+    public Pane getRootPane(){
+        return this.rootPane;
     }
 }
