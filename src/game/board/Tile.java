@@ -35,6 +35,11 @@ public class Tile {
     public Coordinate getCoordinate(){
         return this.coordinate;
     }
+
+    public boolean isBorder() {
+        return isBorder;
+    }
+
     /**
      * Method for making moving easier, so that we immediately know the next tile
      * @param direction - The direction that you want to know

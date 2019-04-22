@@ -159,4 +159,8 @@ public class GameBoard {
         }
         return result;
     }
+
+    public Tile[][] getTileGrid(){
+        return this.tileGrid;
+    }
 }

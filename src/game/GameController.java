@@ -33,7 +33,7 @@ public class GameController{
         this.gameState = gameState;
     }
 
-    public void resetScore(){
+    private void resetScore(){
         this.score = 0;
     }
 
@@ -48,7 +48,7 @@ public class GameController{
     public GameBoard getGameBoard(){
         return this.gameBoard;
     }
-    
+
     public void startGame() throws IOException {
         this.gameBoard = new GameBoard(this.mapName); //Loads up the map
         this.screen = new GameScreen(1000,1000);

@@ -17,6 +17,7 @@ public class SnakeGame extends Application {
     private Stage mainStage;
     private Scene mainScene;
 
+
     private MainMenu mainMenu;
 
     @Override
