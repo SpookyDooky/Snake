@@ -2,9 +2,11 @@ package game.board;
 
 import game.Direction;
 import game.unit.MovingUnit;
+import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class GameBoard {
 
@@ -139,5 +141,22 @@ public class GameBoard {
 
     public Tile tileAt(int x, int y){
         return tileGrid[x][y];
+    }
+
+    public ArrayList<Unit> findUnit(Class unit){
+        Tile[][] theGridClone = this.tileGrid.clone();
+        ArrayList<Unit> result = new ArrayList<>();
+        for(int x = 0; x < this.width;x++){
+            for(int y = 0; y < this.height;y++){
+                ArrayList<Unit> cloned = theGridClone[x][y].getOccupants();
+
+                for(Unit occupant : cloned){
+                    if(unit.isInstance(occupant)){
+                        result.add(occupant);
+                    }
+                }
+            }
+        }
+        return result;
     }
 }

@@ -32,6 +32,7 @@ public class SnakeGame extends Application {
         primaryStage.setOnCloseRequest(event -> {
             System.out.println("Shutting down game...");
             Platform.exit();
+            System.exit(1);
         });
 
         this.game = new GameController();
@@ -51,6 +52,10 @@ public class SnakeGame extends Application {
         return this.mainStage;
     }
 
+    public GameController getGame(){
+        return this.game;
+    }
+
     public void launchGame(String mapName){
         if(game.getGameState() != State.InMenus){
             System.out.println("Something went wrong");
@@ -65,4 +70,5 @@ public class SnakeGame extends Application {
             }
         }
     }
+
 }
