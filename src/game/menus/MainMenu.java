@@ -10,6 +10,7 @@ public class MainMenu extends MenuScene{
         super(rootpane);
         setupPlayButton();
         setupHighscoreButton();
+        setupExitButton();
     }
 
     private void setupPlayButton(){
@@ -43,5 +44,21 @@ public class MainMenu extends MenuScene{
             System.out.println("Show highscores");
         });
         this.getRootPane().getChildren().add(highscore);
+    }
+
+    private void setupExitButton(){
+        Button exit = new Button();
+        exit.setText("Exit");
+        exit.setMinHeight(50);
+        exit.setMaxHeight(50);
+        exit.setMinWidth(300);
+        exit.setMaxWidth(300);
+        exit.setLayoutX(250);
+        exit.setLayoutY(325);
+
+        exit.setOnMouseClicked(event -> {
+            System.exit(1);
+        });
+        this.getRootPane().getChildren().add(exit);
     }
 }

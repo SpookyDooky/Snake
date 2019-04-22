@@ -3,6 +3,8 @@ package game;
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GameScreen extends JFrame {
 
@@ -26,6 +28,14 @@ public class GameScreen extends JFrame {
                     test.dispose();
                     SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
                 }
+            }
+        });
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                test.dispose();
+                SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
             }
         });
     }
