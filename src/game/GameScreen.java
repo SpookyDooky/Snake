@@ -1,6 +1,7 @@
 package game;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -36,6 +37,13 @@ public class GameScreen extends JFrame {
             public void windowClosing(WindowEvent e) {
                 test.dispose();
                 SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
+            }
+        });
+
+        this.add(new JPanel(){
+            @Override
+            public void paintComponent(Graphics g) {
+
             }
         });
     }

@@ -45,6 +45,10 @@ public class GameController{
         this.score++;
     }
 
+    public GameBoard getGameBoard(){
+        return this.gameBoard;
+    }
+    
     public void startGame() throws IOException {
         this.gameBoard = new GameBoard(this.mapName); //Loads up the map
         this.screen = new GameScreen(1000,1000);
