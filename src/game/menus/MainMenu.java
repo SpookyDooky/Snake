@@ -1,5 +1,6 @@
 package game.menus;
 
+import game.SnakeGame;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
@@ -23,7 +24,7 @@ public class MainMenu extends MenuScene{
 
         playButton.setOnMouseClicked(event -> {
             System.out.println("Routing to the map selection");
-            //Map selection screen
+            SnakeGame.getGameInstance().getMainStage().setScene(new MapSelection(new Pane()));
         });
         this.getRootPane().getChildren().add(playButton);
     }

@@ -19,23 +19,9 @@ public class MenuScene extends Scene {
         this.rootPane = root;
         root.setMinWidth(width);
         root.setMinHeight(height);
-        setupBackButton();
     }
 
     public Pane getRootPane(){
         return this.rootPane;
-    }
-
-    private void setupBackButton(){
-        Button backButton = new Button();
-        backButton.setText("Back");
-        backButton.setMinWidth(300);
-        backButton.setMaxWidth(300);
-        backButton.setMinHeight(50);
-        backButton.setMinHeight(50);
-        backButton.setLayoutX(250);
-        backButton.setLayoutY(675);
-
-        this.getRootPane().getChildren().add(backButton);
     }
 }

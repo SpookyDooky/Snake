@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 public class SnakeGame extends Application {
 
+    private static SnakeGame gameInstance;
+
     private Stage mainStage;
     private Scene mainScene;
 
@@ -16,6 +18,7 @@ public class SnakeGame extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        gameInstance = this;
         this.mainStage = primaryStage;
         primaryStage.setTitle("Snake");
 
@@ -32,5 +35,13 @@ public class SnakeGame extends Application {
     private void launchMenu(){
         this.mainMenu = new MainMenu(new Pane());
         this.mainStage.setScene(this.mainMenu);
+    }
+
+    public static SnakeGame getGameInstance(){
+        return gameInstance;
+    }
+
+    public Stage getMainStage(){
+        return this.mainStage;
     }
 }
