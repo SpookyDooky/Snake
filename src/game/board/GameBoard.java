@@ -47,6 +47,10 @@ public class GameBoard {
         }
     }
 
+    /**
+     * For linking regular tiles
+     * @param current - The tile we want to link to its neighbours
+     */
     private void linkTile(Tile current){
         for(Direction direction : Direction.values()){
             Coordinate currentCoordinate = current.getCoordinate();
@@ -57,6 +61,24 @@ public class GameBoard {
                 current.getMoveMap().put(direction,tileAt(newX,newY));
             }
         }
+    }
+
+    private void linkAroundTiles(){
+
+    }
+
+    private void linkCornersAround(){
+        tileAt(0,0).getMoveMap().put(Direction.West,tileAt(this.width -1,0));
+        tileAt(0,0).getMoveMap().put(Direction.North,tileAt(0,this.height-1));
+
+        tileAt(this.width-1,0).getMoveMap().put(Direction.East,tileAt(0,0));
+        tileAt(this.width-1,0).getMoveMap().put(Direction.North,tileAt(this.width-1,this.height-1));
+
+        tileAt(0,this.height-1).getMoveMap().put(Direction.West,tileAt(this.width -1,this.height - 1));
+        tileAt(0,this.height-1).getMoveMap().put(Direction.North,tileAt(0,0));
+
+        tileAt(this.width-1, this.height-1).getMoveMap().put(Direction.East,tileAt(0,this.height-1));
+        tileAt(this.width-1, this.height-1).getMoveMap().put(Direction.North,tileAt(this.width - 1,0));
     }
 
     public Tile tileAt(int x, int y){
