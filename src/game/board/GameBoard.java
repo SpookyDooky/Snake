@@ -1,13 +1,19 @@
 package game.board;
 
 import game.Direction;
+import game.unit.MovingUnit;
+import game.unit.Unit;
+import game.unit.movingunits.SnakeHead;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class GameBoard {
 
     private int width;
     private int height;
+
+    private Coordinate spawnpoint;
 
     private Tile[][] tileGrid;
     private char[][] charGrid;
@@ -30,6 +36,7 @@ public class GameBoard {
 
     public void init(){
         initGame();
+        initTiles();
         linkTiles();
         linkAroundTiles();
         linkCornersAround();
@@ -63,12 +70,16 @@ public class GameBoard {
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
                 switch(charGrid[x][y]){
-                    case '#': new Tile(true, new Coordinate(x,y));
+                    case '#': tileGrid[x][y] = new Tile(true, new Coordinate(x,y));
                     break;
                     case 'H': {
-
+                        this.spawnpoint = new Coordinate(x,y);
+                        MovingUnit snake = new SnakeHead(x,y);
+                        Tile current = new Tile(false,this.spawnpoint);
+                        current.getOccupants().add(snake);
+                        tileGrid[x][y] = current;
                     } break;
-                    case 'O': new Tile(false,new Coordinate(x,y));
+                    case 'O': tileGrid[x][y] = new Tile(false,new Coordinate(x,y));
                     break;
 
                 }

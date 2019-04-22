@@ -20,20 +20,7 @@ public class Tile {
     public Tile(boolean isBorder,Coordinate coordinate){
         this.occupants = new ArrayList<>();
         this.moveMap = new HashMap<>();
-        this.isBorder = true;
-        this.coordinate = coordinate;
-    }
-
-    /**
-     * Constructor for regular tiles
-     * @param occupants - Occupants of that tile
-     * @param moveMap - The map of the neighbours
-     * @param coordinate - Coordinate of the tile
-     */
-    public Tile(ArrayList<Unit> occupants, HashMap<Direction,Tile> moveMap,Coordinate coordinate){
-        this.occupants = occupants;
-        this.moveMap = moveMap;
-        this.isBorder = false;
+        this.isBorder = isBorder;
         this.coordinate = coordinate;
     }
 
