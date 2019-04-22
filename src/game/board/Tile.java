@@ -14,41 +14,26 @@ public class Tile {
     private Coordinate coordinate;
 
     /**
-     * Used for initializing the field
-     * @param coordinate - Coordinates of the tile
-     */
-    public Tile(Coordinate coordinate){
-        this.occupants = new ArrayList<>();
-        this.moveMap = new HashMap<>();
-        this.isBorder = false;
-        this.coordinate = coordinate;
-    }
-
-    /**
      * Constructor for creating walls
      * @param isBorder - Boolean has to be true
      */
-    public Tile(boolean isBorder){
-        if(!isBorder){
-            throw new IllegalArgumentException("Can't use this constructor for non walls");
-        }
-
+    public Tile(boolean isBorder,Coordinate coordinate){
         this.occupants = new ArrayList<>();
         this.moveMap = new HashMap<>();
         this.isBorder = true;
+        this.coordinate = coordinate;
     }
 
     /**
      * Constructor for regular tiles
      * @param occupants - Occupants of that tile
      * @param moveMap - The map of the neighbours
-     * @param isBorder - Checks if its a border
      * @param coordinate - Coordinate of the tile
      */
-    public Tile(ArrayList<Unit> occupants, HashMap<Direction,Tile> moveMap, boolean isBorder, Coordinate coordinate){
+    public Tile(ArrayList<Unit> occupants, HashMap<Direction,Tile> moveMap,Coordinate coordinate){
         this.occupants = occupants;
         this.moveMap = moveMap;
-        this.isBorder = isBorder;
+        this.isBorder = false;
         this.coordinate = coordinate;
     }
 

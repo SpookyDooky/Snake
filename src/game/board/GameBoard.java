@@ -2,19 +2,21 @@ package game.board;
 
 import game.Direction;
 
+import java.io.*;
+
 public class GameBoard {
 
     private int width;
     private int height;
 
-    private Coordinate spawnpoint;
     private Tile[][] tileGrid;
+    private char[][] charGrid;
 
-    public GameBoard(int width, int height, Coordinate spawnpoint){
-        this.width = width;
-        this.height = height;
-        this.spawnpoint = spawnpoint;
+    private String mapName;
+
+    public GameBoard(String mapName){
         this.tileGrid = new Tile[width][height];
+        this.mapName = mapName;
         init();
     }
 
@@ -27,16 +29,49 @@ public class GameBoard {
     }
 
     public void init(){
-        initTiles();
+        initGame();
         linkTiles();
         linkAroundTiles();
         linkCornersAround();
     }
 
+
+    private void initGame(){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File("maps" + File.separator + this.mapName)));
+            String dimensions = reader.readLine();
+            String[] splitted = dimensions.split(" ");
+
+            this.width = Integer.valueOf(splitted[0]);
+            this.height = Integer.valueOf(splitted[1]);
+            this.charGrid = new char[this.width][this.height];
+
+            for(int y = 0; y < this.height;y++){
+                String line = reader.readLine();
+                char[] charArray = line.toCharArray();
+                for(int x = 0; x < this.width;x++){
+                    charGrid[x][y] = charArray[x];
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initTiles(){
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
-                tileGrid[x][y] = new Tile(new Coordinate(x,y));
+                switch(charGrid[x][y]){
+                    case '#': new Tile(true, new Coordinate(x,y));
+                    break;
+                    case 'H': {
+
+                    } break;
+                    case 'O': new Tile(false,new Coordinate(x,y));
+                    break;
+
+                }
             }
         }
     }
