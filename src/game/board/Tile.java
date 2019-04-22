@@ -14,6 +14,17 @@ public class Tile {
     private Coordinate coordinate;
 
     /**
+     * Used for initializing the field
+     * @param coordinate - Coordinates of the tile
+     */
+    public Tile(Coordinate coordinate){
+        this.occupants = new ArrayList<>();
+        this.moveMap = new HashMap<>();
+        this.isBorder = false;
+        this.coordinate = coordinate;
+    }
+
+    /**
      * Constructor for creating walls
      * @param isBorder - Boolean has to be true
      */

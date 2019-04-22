@@ -23,13 +23,27 @@ public class GameBoard {
         return this.height;
     }
 
-    public void initBoard(){
-        for(int x = 0; x < this.width;x++){
-            for(int y = 0; y < this.height;y++){
+    public void init(){
+
+    }
+
+    private void initTiles(){
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                tileGrid[x][y] = new Tile(new Coordinate(x,y));
+            }
+        }
+    }
+
+    private void linkTiles(){
+        for(int x = 0; x < width;x++){
+            for(int y = 0; y < height; y++){
 
             }
         }
     }
 
-
+    public Tile tileAt(int x, int y){
+        return tileGrid[x][y];
+    }
 }
