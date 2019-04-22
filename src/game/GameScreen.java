@@ -51,6 +51,7 @@ public class GameScreen extends JFrame {
             public void paintComponent(Graphics g) {
                 //Needs to be brushed up for the correct scaling, this is only temporarily
                 super.paintComponent(g);
+                System.out.println("what");
                 Tile[][] gameField =  SnakeGame.getGameInstance().getGame().getGameBoard().getTileGrid();
                 int gameWidth = SnakeGame.getGameInstance().getGame().getGameBoard().getWidth();
                 int gameHeight = SnakeGame.getGameInstance().getGame().getGameBoard().getHeight();
@@ -59,12 +60,15 @@ public class GameScreen extends JFrame {
                 int windowHeight = height;
 
                 int blockWidth = windowWidth/gameWidth;
-                int blockHeight = gameHeight/windowHeight;
+                int blockHeight = windowHeight/gameHeight;
+
 
                 for(int x = 0; x < gameWidth;x++){
                     for(int y = 0; y < gameHeight;y++){
                         Tile current = gameField[x][y];
                         ArrayList<Unit> occupants = current.getOccupants();
+
+                        g.setColor(Color.WHITE);
                         if(current.isBorder()){
                             g.setColor(Color.BLACK);
                         } else if(occupants.size() > 0){
@@ -74,8 +78,6 @@ public class GameScreen extends JFrame {
                                     g.setColor(Color.red);
                                 } else if(occupant instanceof ScoreUnit){
                                     g.setColor(Color.BLACK);
-                                } else {
-                                    g.setColor(Color.WHITE);
                                 }
                             }
                         }

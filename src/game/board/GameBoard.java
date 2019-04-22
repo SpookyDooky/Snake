@@ -73,6 +73,7 @@ public class GameBoard {
             for(int y = 0; y < height; y++){
                 switch(charGrid[x][y]){
                     case '#': tileGrid[x][y] = new Tile(true, new Coordinate(x,y));
+                        System.out.println("what2");
                     break;
                     case 'H': {
                         this.spawnpoint = new Coordinate(x,y);

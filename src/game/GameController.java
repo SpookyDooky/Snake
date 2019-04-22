@@ -52,7 +52,7 @@ public class GameController{
     public void startGame() throws IOException {
         this.gameBoard = new GameBoard(this.mapName); //Loads up the map
         this.screen = new GameScreen(1000,1000);
-        this.screen.paintAll(this.screen.getGraphics());
+        this.screen.repaint();
         resetScore(); //Resets the score
         start();
     }
