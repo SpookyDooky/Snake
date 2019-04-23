@@ -3,11 +3,11 @@ package game.unit.movingunits;
 import game.Direction;
 import game.SnakeGame;
 import game.unit.MovingUnit;
-import game.unit.Unit;
 
 public class SnakeHead extends MovingUnit {
 
     private int length;
+    private MovingUnit snakeEnd;
 
     public SnakeHead(int x, int y){
         super(x,y,Direction.South);
@@ -29,6 +29,10 @@ public class SnakeHead extends MovingUnit {
             SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),newY).getOccupants().add(newNext);
             next = newNext;
         }
+        this.snakeEnd = next;
     }
 
+    public MovingUnit getSnakeEnd(){
+        return this.snakeEnd;
+    }
 }
