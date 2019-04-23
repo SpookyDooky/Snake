@@ -57,6 +57,7 @@ public class GameBoard {
     private void initGame(){
         try {
 
+            //TODO - Fix file seperator
             BufferedReader reader = new BufferedReader(new FileReader(new File("src\\maps\\" + this.mapName)));
             String dimensions = reader.readLine();
             String[] splitted = dimensions.split(" ");
