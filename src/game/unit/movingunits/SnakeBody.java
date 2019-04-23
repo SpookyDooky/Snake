@@ -1,6 +1,7 @@
 package game.unit.movingunits;
 
 import game.Direction;
+
 import game.SnakeGame;
 import game.board.Tile;
 import game.unit.MovingUnit;
@@ -29,17 +30,15 @@ public class SnakeBody extends MovingUnit {
 
     @Override
     public void moveUnit() {
+        Tile currentTile = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY());
+        Tile next = nextChainLink.getLastTile();
 
-    }
+        this.setX(next.getCoordinate().getX());
+        this.setY(next.getCoordinate().getY());
 
-    private void moveTile(){
-        Tile current = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY());
-        Tile next  = current.tileAt(this.getDirection());
-
-        this.setX(this.getX() + this.getDirection().getDeltX());
-        this.setY(this.getY() + this.getDirection().getDeltY());
-
-        current.getOccupants().remove(this);
+        currentTile.getOccupants().remove(this);
         next.getOccupants().add(this);
+
+        this.setLastTile(currentTile);
     }
 }

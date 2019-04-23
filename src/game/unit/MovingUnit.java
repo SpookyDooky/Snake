@@ -22,6 +22,11 @@ public class MovingUnit extends Unit{
         this.direction = direction;
     }
 
+
+    public void initLastTile(){
+        this.lastTile = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY());
+    }
+
     public Direction getDirection(){
         return this.direction;
     }
@@ -39,8 +44,10 @@ public class MovingUnit extends Unit{
             current.getOccupants().remove(this);
             next.getOccupants().add(this);
             checkScoreUnit(next);
-            this.setX(this.getX() + this.direction.getDeltX());
-            this.setY(this.getY() + this.direction.getDeltY());
+            this.setX(next.getCoordinate().getX());
+            this.setY(next.getCoordinate().getY());
+
+            this.setLastTile(current);
         } else {
             SnakeGame.getGameInstance().getGame().setGameState(State.GameOver);
             SnakeGame.getGameInstance().getGame().getScreen().dispose();
@@ -88,7 +95,7 @@ public class MovingUnit extends Unit{
         return this.lastTile;
     }
 
-    public void setLastTile(Tile last){
-        this.lastTile = last;
+    public void setLastTile(Tile lastTile){
+        this.lastTile = lastTile;
     }
 }
