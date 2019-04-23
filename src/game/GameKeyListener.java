@@ -26,7 +26,9 @@ public class GameKeyListener extends KeyAdapter {
         } else if(extended == KeyEvent.VK_ESCAPE){
             GameScreen theScreen = SnakeGame.getGameInstance().getGame().getScreen();
             theScreen.dispose();
-            SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
+            SnakeGame instance = SnakeGame.getGameInstance();
+            instance.getGame().setGameState(State.InMenus);
+            instance.getGame().stop();
         } else if(extended == KeyEvent.VK_P){
             //TODO - Change state to paused and make sure the game stops running
             SnakeGame.getGameInstance().getGame().setGameState(State.Paused);

@@ -7,8 +7,6 @@ import game.unit.Unit;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -29,15 +27,6 @@ public class GameScreen extends JFrame {
     public void init(){
         GameScreen test = this;
         this.addKeyListener(new GameKeyListener());
-        //this.addKeyListener(new KeyAdapter() {
-        //    @Override
-        //    public void keyPressed(KeyEvent e) {
-        //        if(e.getExtendedKeyCode() == KeyEvent.VK_ESCAPE){
-        //            test.dispose();
-        //            SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
-        //        }
-        //    }
-        //});
 
         this.addWindowListener(new WindowAdapter() {
             @Override
