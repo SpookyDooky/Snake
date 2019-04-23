@@ -28,15 +28,16 @@ public class GameScreen extends JFrame {
 
     public void init(){
         GameScreen test = this;
-        this.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getExtendedKeyCode() == KeyEvent.VK_ESCAPE){
-                    test.dispose();
-                    SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
-                }
-            }
-        });
+        this.addKeyListener(new GameKeyListener());
+        //this.addKeyListener(new KeyAdapter() {
+        //    @Override
+        //    public void keyPressed(KeyEvent e) {
+        //        if(e.getExtendedKeyCode() == KeyEvent.VK_ESCAPE){
+        //            test.dispose();
+        //            SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
+        //        }
+        //    }
+        //});
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -52,6 +53,7 @@ public class GameScreen extends JFrame {
                 //Needs to be brushed up for the correct scaling, this is only temporarily
                 //TODO - Move part of the code to permanent storage so that it wont need to be recalculated every time
                 super.paintComponent(g);
+                //System.out.println("drawing");
                 Tile[][] gameField =  SnakeGame.getGameInstance().getGame().getGameBoard().getTileGrid();
                 int gameWidth = SnakeGame.getGameInstance().getGame().getGameBoard().getWidth();
                 int gameHeight = SnakeGame.getGameInstance().getGame().getGameBoard().getHeight();
