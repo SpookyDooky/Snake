@@ -15,6 +15,7 @@ public class GameKeyListener extends KeyAdapter {
         int extended = e.getExtendedKeyCode();
         ArrayList<Unit> unitList = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
 
+        //TODO - Add checks so you can't go from north to south
         if(extended == KeyEvent.VK_W){
             changeDirection(Direction.North,unitList);
         } else if(extended == KeyEvent.VK_D){
@@ -31,6 +32,7 @@ public class GameKeyListener extends KeyAdapter {
             instance.getGame().stop();
         } else if(extended == KeyEvent.VK_P){
             //TODO - Change state to paused and make sure the game stops running
+            //TODO - Make a check that if the game is already paused then the game should be unpaused
             SnakeGame.getGameInstance().getGame().setGameState(State.Paused);
         }
     }
