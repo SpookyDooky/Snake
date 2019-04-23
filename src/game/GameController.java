@@ -78,8 +78,9 @@ public class GameController extends Timer {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Game Tick");
                 screen.repaint();
-                //ArrayList<Unit> movingUnits = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
-                //moveUnits(movingUnits);
+                ArrayList<Unit> movingUnits = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
+                System.out.println(movingUnits.size());
+                moveUnits(movingUnits);
 
             }
         });

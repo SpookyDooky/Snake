@@ -23,11 +23,7 @@ public class MovingUnit extends Unit{
     }
 
     public void moveUnit(){
-        GameBoard board = SnakeGame.getGameInstance().getGame().getGameBoard();
-        Tile current =  board.tileAt(this.getX(),this.getY());
-
-        Tile nextTile = current.tileAt(this.direction);
-        current.getOccupants().remove(this);
-        nextTile.getOccupants().add(this);
+        SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY()).getOccupants().remove(this);
+        SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY()).tileAt(this.direction).getOccupants().add(this);
     }
 }
