@@ -36,6 +36,7 @@ public class MovingUnit extends Unit{
         if(collision(next)) {
             current.getOccupants().remove(this);
             next.getOccupants().add(this);
+            checkScoreUnit(next);
             this.setX(this.getX() + this.direction.getDeltX());
             this.setY(this.getY() + this.direction.getDeltY());
         } else {
@@ -64,5 +65,15 @@ public class MovingUnit extends Unit{
             }
         }
         return false;
+    }
+
+    private void checkScoreUnit(Tile next){
+        ArrayList<Unit> unitList = next.getOccupants();
+        for(Unit unit : unitList){
+            if(unit instanceof ScoreUnit){
+                ((ScoreUnit) unit).collide();
+                SnakeGame.getGameInstance().getGame().getGameBoard().spawnRandomDot();
+            }
+        }
     }
 }
