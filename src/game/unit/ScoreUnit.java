@@ -1,5 +1,7 @@
 package game.unit;
 
+import game.SnakeGame;
+
 public class ScoreUnit extends Unit{
 
     private int score;
@@ -11,5 +13,12 @@ public class ScoreUnit extends Unit{
 
     public int getScore(){
         return this.score;
+    }
+
+    public void collide(){
+        SnakeGame game = SnakeGame.getGameInstance();
+        game.getGame().getGameBoard().tileAt(this.getX(),this.getY()).getOccupants().remove(this);
+        game.getGame().incrementScore();
+
     }
 }

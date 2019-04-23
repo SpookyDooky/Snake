@@ -71,5 +71,4 @@ public class SnakeGame extends Application {
             }
         }
     }
-
 }

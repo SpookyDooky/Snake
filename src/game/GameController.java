@@ -1,8 +1,10 @@
 package game;
 
 import game.board.GameBoard;
+import game.menus.GameOver;
 import game.unit.MovingUnit;
 import game.unit.Unit;
+import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -52,6 +54,7 @@ public class GameController extends Timer {
 
     public void incrementScore(){
         this.score++;
+        System.out.println("Score: " + this.score);
     }
 
     public GameBoard getGameBoard(){
@@ -76,10 +79,10 @@ public class GameController extends Timer {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Game Tick");
+                //System.out.println("Game Tick");
                 screen.repaint();
                 ArrayList<Unit> movingUnits = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
-                System.out.println(movingUnits.size());
+                //System.out.println(movingUnits.size());
                 moveUnits(movingUnits);
 
             }

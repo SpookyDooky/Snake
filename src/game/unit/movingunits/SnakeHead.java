@@ -17,4 +17,11 @@ public class SnakeHead extends MovingUnit {
         this.length++;
     }
 
+    /*
+     * Temporary snake spawn algorithm, in the future I want the orignal way of snake spawning, that it comes out of a hole in the ground.
+     */
+    public void initSnakeStart(){
+
+    }
+
 }

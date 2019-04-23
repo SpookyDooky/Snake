@@ -40,6 +40,9 @@ public class Tile {
         return isBorder;
     }
 
+    public void setOccupants(ArrayList<Unit> help){
+        this.occupants = help;
+    }
     /**
      * Method for making moving easier, so that we immediately know the next tile
      * @param direction - The direction that you want to know

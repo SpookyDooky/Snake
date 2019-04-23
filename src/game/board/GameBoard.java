@@ -2,6 +2,7 @@ package game.board;
 
 import game.Direction;
 import game.unit.MovingUnit;
+import game.unit.ScoreUnit;
 import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
 
@@ -47,6 +48,7 @@ public class GameBoard {
         linkTiles();
         linkAroundTiles();
         linkCornersAround();
+        spawnRandomDot();
     }
 
     /**
@@ -197,5 +199,17 @@ public class GameBoard {
      */
     public Tile[][] getTileGrid(){
         return this.tileGrid;
+    }
+
+    public void spawnRandomDot(){
+        int randomX = (int) (Math.random() * this.width);
+        int randomY = (int) (Math.random() * this.height);
+
+        Tile target = tileAt(randomX,randomY);
+        if(!target.isBorder()){
+            target.getOccupants().add(new ScoreUnit(randomX,randomY,1));
+        } else {
+            spawnRandomDot();
+        }
     }
 }
