@@ -20,4 +20,13 @@ public class SnakeBody extends MovingUnit {
             this.setDirection(this.nextChainLink.getDirection());
         }
     }
+
+    public MovingUnit getNextChainLink(){
+        return this.nextChainLink;
+    }
+
+    @Override
+    public void moveUnit() {
+        super.moveUnit();
+    }
 }

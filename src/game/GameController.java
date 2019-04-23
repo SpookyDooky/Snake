@@ -4,6 +4,7 @@ import game.board.GameBoard;
 import game.menus.GameOver;
 import game.unit.MovingUnit;
 import game.unit.Unit;
+import game.unit.movingunits.SnakeHead;
 import javafx.scene.layout.Pane;
 
 import javax.swing.*;
@@ -69,10 +70,22 @@ public class GameController extends Timer {
         this.gameBoard = new GameBoard(this.mapName); //Loads up the map
         this.screen = new GameScreen(1000,1000);
         this.screen.repaint();
-
         resetScore(); //Resets the score
+
+        ArrayList<Unit> unitList = this.gameBoard.findUnit(SnakeHead.class);
+        initSnake(unitList);
+
+        //Starts loop
         initTimer();
         this.start();
+    }
+
+    private void initSnake(ArrayList<Unit> unitList){
+        for(Unit unit : unitList){
+            if(unit instanceof SnakeHead){
+                ((SnakeHead) unit).initSnakeStart();
+            }
+        }
     }
 
     private void initTimer(){

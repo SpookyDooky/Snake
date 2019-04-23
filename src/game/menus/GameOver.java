@@ -1,6 +1,7 @@
 package game.menus;
 
 import game.SnakeGame;
+import game.State;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
@@ -23,6 +24,7 @@ public class GameOver extends MenuScene {
 
         returnButton.setOnMouseClicked(event -> {
             SnakeGame.getGameInstance().getMainStage().setScene(new MainMenu(new Pane()));
+            SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
         });
         this.getRootPane().getChildren().add(returnButton);
     }

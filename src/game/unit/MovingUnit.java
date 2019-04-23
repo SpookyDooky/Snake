@@ -6,6 +6,7 @@ import game.State;
 import game.board.GameBoard;
 import game.board.Tile;
 import game.menus.GameOver;
+import game.unit.movingunits.SnakeBody;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 
@@ -60,8 +61,13 @@ public class MovingUnit extends Unit{
     private boolean containsMovingUnit(Tile next){
         ArrayList<Unit> unitList = next.getOccupants();
         for(Unit unit : unitList){
-            if(unit instanceof MovingUnit){
-                return true;
+            if(unit instanceof SnakeBody){
+                SnakeBody body = (SnakeBody) unit;
+                if(body.getNextChainLink() != this){
+                    return false;
+                } else {
+                    return true;
+                }
             }
         }
         return false;
