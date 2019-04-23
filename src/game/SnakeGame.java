@@ -1,6 +1,5 @@
 package game;
 
-import game.menus.GameOver;
 import game.menus.MainMenu;
 import javafx.application.Application;
 import javafx.application.Platform;

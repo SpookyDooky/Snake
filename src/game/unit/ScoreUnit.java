@@ -16,6 +16,9 @@ public class ScoreUnit extends Unit{
     }
 
     public void collide(){
-        SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY()).getOccupants().remove(this);
+        SnakeGame game = SnakeGame.getGameInstance();
+        game.getGame().getGameBoard().tileAt(this.getX(),this.getY()).getOccupants().remove(this);
+        game.getGame().incrementScore();
+
     }
 }
