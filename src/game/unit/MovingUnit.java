@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class MovingUnit extends Unit{
 
     private Direction direction;
+    private Tile lastTile;
 
     public MovingUnit(int x, int y, Direction direction){
         super(x,y);
@@ -81,5 +82,13 @@ public class MovingUnit extends Unit{
                 SnakeGame.getGameInstance().getGame().getGameBoard().spawnRandomDot();
             }
         }
+    }
+
+    public Tile getLastTile(){
+        return this.lastTile;
+    }
+
+    public void setLastTile(Tile last){
+        this.lastTile = last;
     }
 }

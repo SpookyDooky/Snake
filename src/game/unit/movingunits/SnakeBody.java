@@ -29,13 +29,7 @@ public class SnakeBody extends MovingUnit {
 
     @Override
     public void moveUnit() {
-        Direction nextUnitDir = this.nextChainLink.getDirection();
-        if(nextUnitDir != this.getDirection()){
-            moveTile();
-            this.setDirection(nextUnitDir);
-        } else {
-            moveTile();
-        }
+
     }
 
     private void moveTile(){
