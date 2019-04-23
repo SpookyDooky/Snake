@@ -20,6 +20,10 @@ public class GameBoard {
 
     private String mapName;
 
+    /**
+     * Basic constructor
+     * @param mapName
+     */
     public GameBoard(String mapName){
         this.tileGrid = new Tile[width][height];
         this.mapName = mapName;
@@ -34,6 +38,9 @@ public class GameBoard {
         return this.height;
     }
 
+    /**
+     * Method for initializing everything
+     */
     public void init(){
         initGame();
         initTiles();
@@ -42,7 +49,9 @@ public class GameBoard {
         linkCornersAround();
     }
 
-
+    /**
+     * Reads out the file, begin of map initialization
+     */
     private void initGame(){
         try {
 
@@ -68,6 +77,9 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Initializes all the tiles
+     */
     private void initTiles(){
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
@@ -89,6 +101,9 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Link loop
+     */
     private void linkTiles(){
         for(int x = 0; x < width;x++){
             for(int y = 0; y < height; y++){
@@ -113,6 +128,9 @@ public class GameBoard {
         }
     }
 
+    /**
+     * For making the map go around, this is for future game features
+     */
     private void linkAroundTiles(){
         for(int x = 1; x < this.width - 1;x++){
             tileAt(x,0).getMoveMap().put(Direction.North,tileAt(x,this.height - 1));
@@ -125,6 +143,9 @@ public class GameBoard {
         }
     }
 
+    /**
+     * For making the corners go around
+     */
     private void linkCornersAround(){
         tileAt(0,0).getMoveMap().put(Direction.West,tileAt(this.width -1,0));
         tileAt(0,0).getMoveMap().put(Direction.North,tileAt(0,this.height-1));
@@ -139,10 +160,21 @@ public class GameBoard {
         tileAt(this.width-1, this.height-1).getMoveMap().put(Direction.North,tileAt(this.width - 1,0));
     }
 
+    /**
+     * Returns a tile
+     * @param x - The x value
+     * @param y - The y value
+     * @return - The tile at that location
+     */
     public Tile tileAt(int x, int y){
         return tileGrid[x][y];
     }
 
+    /**
+     * Finds a unit on the board
+     * @param unit - The class of the unit
+     * @return - All units that belong to that class
+     */
     public ArrayList<Unit> findUnit(Class unit){
         Tile[][] theGridClone = this.tileGrid.clone();
         ArrayList<Unit> result = new ArrayList<>();
@@ -158,5 +190,12 @@ public class GameBoard {
             }
         }
         return result;
+    }
+
+    /**
+     * @return - Returns the tile grid
+     */
+    public Tile[][] getTileGrid(){
+        return this.tileGrid;
     }
 }

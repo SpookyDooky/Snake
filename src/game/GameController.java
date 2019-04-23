@@ -1,9 +1,11 @@
 package game;
 
 import game.board.GameBoard;
+
+import javax.swing.*;
 import java.io.IOException;
 
-public class GameController{
+public class GameController extends Timer {
 
     private String mapName;
 
@@ -13,6 +15,7 @@ public class GameController{
     private int score;
 
     public GameController(){
+        super(5,null);
         this.gameState = State.Unknown;
         this.score = 0;
     }
@@ -33,7 +36,7 @@ public class GameController{
         this.gameState = gameState;
     }
 
-    public void resetScore(){
+    private void resetScore(){
         this.score = 0;
     }
 
@@ -48,17 +51,15 @@ public class GameController{
     public GameBoard getGameBoard(){
         return this.gameBoard;
     }
-    
+
+    public GameScreen getScreen(){
+        return this.screen;
+    }
+
     public void startGame() throws IOException {
         this.gameBoard = new GameBoard(this.mapName); //Loads up the map
         this.screen = new GameScreen(1000,1000);
-
+        this.screen.repaint();
         resetScore(); //Resets the score
-        start();
-    }
-
-    public void start(){
-        //TODO - Run game logic
-        //TODO - Render
     }
 }
