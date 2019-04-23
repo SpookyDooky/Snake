@@ -82,8 +82,8 @@ public class GameScreen extends JFrame {
                             }
                         }
 
-                        g.drawRect(blockWidth * x,blockHeight*y,blockWidth,blockHeight);
-                        //g.fillRect(blockWidth * x,blockHeight * y,blockWidth,blockHeight);
+                        //g.drawRect(blockWidth * x,blockHeight*y,blockWidth,blockHeight);
+                        g.fillRect(blockWidth * x,blockHeight * y,blockWidth,blockHeight);
                     }
                 }
             }

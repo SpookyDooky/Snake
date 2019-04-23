@@ -54,7 +54,7 @@ public class GameController{
         this.screen = new GameScreen(1000,1000);
         this.screen.repaint();
         resetScore(); //Resets the score
-        start();
+        start(); //Initiate tick speed and stuff, refresh rate should be 5, or equal to game speed, not really necessary to do more.
     }
 
     public void start(){
