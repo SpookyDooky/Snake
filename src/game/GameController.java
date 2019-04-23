@@ -1,9 +1,14 @@
 package game;
 
 import game.board.GameBoard;
+import game.unit.MovingUnit;
+import game.unit.Unit;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameController extends Timer {
 
@@ -15,7 +20,8 @@ public class GameController extends Timer {
     private int score;
 
     public GameController(){
-        super(5,null);
+        super(200,null);
+        this.setRepeats(true);
         this.gameState = State.Unknown;
         this.score = 0;
     }
@@ -60,6 +66,32 @@ public class GameController extends Timer {
         this.gameBoard = new GameBoard(this.mapName); //Loads up the map
         this.screen = new GameScreen(1000,1000);
         this.screen.repaint();
+
         resetScore(); //Resets the score
+        initTimer();
+        this.start();
+    }
+
+    private void initTimer(){
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Game Tick");
+                screen.repaint();
+                ArrayList<Unit> movingUnits = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
+                System.out.println(movingUnits.size());
+                moveUnits(movingUnits);
+
+            }
+        });
+
+    }
+
+    private void moveUnits(ArrayList<Unit> unitList){
+        for(Unit unit : unitList){
+            if(unit instanceof MovingUnit){
+                ((MovingUnit) unit).moveUnit();
+            }
+        }
     }
 }
