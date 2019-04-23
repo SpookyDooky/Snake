@@ -54,7 +54,7 @@ public class GameController extends Timer {
 
     public void incrementScore(){
         this.score++;
-        System.out.println(this.score);
+        System.out.println("Score: " + this.score);
     }
 
     public GameBoard getGameBoard(){
