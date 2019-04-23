@@ -50,15 +50,14 @@ public class GameScreen extends JFrame {
             @Override
             public void paintComponent(Graphics g) {
                 //Needs to be brushed up for the correct scaling, this is only temporarily
-                //TODO - Fix screen alignment bug
                 //TODO - Move part of the code to permanent storage so that it wont need to be recalculated every time
                 super.paintComponent(g);
                 Tile[][] gameField =  SnakeGame.getGameInstance().getGame().getGameBoard().getTileGrid();
                 int gameWidth = SnakeGame.getGameInstance().getGame().getGameBoard().getWidth();
                 int gameHeight = SnakeGame.getGameInstance().getGame().getGameBoard().getHeight();
 
-                int windowWidth = width;
-                int windowHeight = height;
+                int windowWidth = this.getWidth();
+                int windowHeight = this.getHeight();
 
                 int blockWidth = windowWidth/gameWidth;
                 int blockHeight = windowHeight/gameHeight;
@@ -83,7 +82,8 @@ public class GameScreen extends JFrame {
                             }
                         }
 
-                        g.fillRect(blockWidth * x,blockHeight * y,blockWidth,blockHeight);
+                        g.drawRect(blockWidth * x,blockHeight*y,blockWidth,blockHeight);
+                        //g.fillRect(blockWidth * x,blockHeight * y,blockWidth,blockHeight);
                     }
                 }
             }

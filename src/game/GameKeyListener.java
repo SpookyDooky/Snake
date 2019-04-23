@@ -15,7 +15,7 @@ public class GameKeyListener extends KeyAdapter {
         } else if(extended == KeyEvent.VK_S){
 
         } else if(extended == KeyEvent.VK_A){
-            
+
         }
     }
 }
