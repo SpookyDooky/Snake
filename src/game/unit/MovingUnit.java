@@ -5,6 +5,8 @@ import game.SnakeGame;
 import game.board.GameBoard;
 import game.board.Tile;
 
+import java.util.ArrayList;
+
 public class MovingUnit extends Unit{
 
     private Direction direction;
@@ -23,7 +25,29 @@ public class MovingUnit extends Unit{
     }
 
     public void moveUnit(){
-        SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY()).getOccupants().remove(this);
-        SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY()).tileAt(this.direction).getOccupants().add(this);
+        GameBoard board = SnakeGame.getGameInstance().getGame().getGameBoard();
+        Tile current = board.tileAt(this.getX(),this.getY());
+        Tile next = current.tileAt(this.direction);
+
+        if(collision(next)) {
+            current.getOccupants().remove(this);
+            next.getOccupants().add(this);
+            this.setX(this.getX() + this.direction.getDeltX());
+            this.setY(this.getY() + this.direction.getDeltY());
+        }
+    }
+
+    private boolean collision(Tile next){
+        return !next.isBorder() && !containsMovingUnit(next);
+    }
+
+    private boolean containsMovingUnit(Tile next){
+        ArrayList<Unit> unitList = next.getOccupants();
+        for(Unit unit : unitList){
+            if(unit instanceof MovingUnit){
+                return true;
+            }
+        }
+        return false;
     }
 }
