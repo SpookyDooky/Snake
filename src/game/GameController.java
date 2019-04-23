@@ -1,8 +1,10 @@
 package game;
 
 import game.board.GameBoard;
+import game.menus.GameOver;
 import game.unit.MovingUnit;
 import game.unit.Unit;
+import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
