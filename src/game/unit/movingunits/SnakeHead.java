@@ -11,7 +11,7 @@ public class SnakeHead extends MovingUnit {
 
     public SnakeHead(int x, int y){
         super(x,y,Direction.South);
-        this.length = 4;
+        this.length = 3;
     }
 
     public void increaseLength(){
@@ -23,7 +23,7 @@ public class SnakeHead extends MovingUnit {
      */
     public void initSnakeStart(){
         MovingUnit next = this;
-        for(int x = 0; x < this.length;x++){
+        for(int x = 1; x <= this.length;x++){
             int newY = this.getY() - x;
             MovingUnit newNext = new SnakeBody(this.getX(),newY,this.getDirection(),next);
             SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),newY).getOccupants().add(newNext);
