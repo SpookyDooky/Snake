@@ -1,7 +1,6 @@
 package game;
 
 import game.board.GameBoard;
-import game.unit.MovingUnit;
 import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
 
@@ -11,6 +10,10 @@ import java.util.ArrayList;
 
 public class GameKeyListener extends KeyAdapter {
 
+    /**
+     * Method that takes care of key events
+     * @param e - The key event
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int extended = e.getExtendedKeyCode();
