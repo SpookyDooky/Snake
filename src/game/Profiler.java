@@ -10,7 +10,7 @@ public class Profiler {
 
 
     public long nanos;
-    public volatile long delta;
+    public volatile long delta = 1;
 
     public void begin() {
         nanos = System.nanoTime();
