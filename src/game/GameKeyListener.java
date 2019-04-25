@@ -1,7 +1,6 @@
 package game;
 
 import game.board.GameBoard;
-import game.board.Tile;
 import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
 
@@ -57,7 +56,7 @@ public class GameKeyListener extends KeyAdapter {
      * @param head - The head of the snake
      */
     private void changeDirection(Direction direction, SnakeHead head){
-        if(SnakeGame.getGameInstance().getGame().getGameState() != State.Paused && notOpposite(direction,head) && antiUTurn(direction,head)) {
+        if(SnakeGame.getGameInstance().getGame().getGameState() != State.Paused && notOpposite(direction,head)) {
                 head.setDirection(direction);
         }
     }
@@ -71,12 +70,5 @@ public class GameKeyListener extends KeyAdapter {
     private boolean notOpposite(Direction desired, SnakeHead head){
         Direction opposite = Direction.opposite(desired);
         return head.getDirection() != opposite;
-    }
-
-    private boolean antiUTurn(Direction direction, SnakeHead head){
-        Tile current = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(head.getX(),head.getY());
-        Tile desired = current.tileAt(direction);
-
-        return !desired.getOccupants().contains(head.getFirstSnakePart());
     }
 }
