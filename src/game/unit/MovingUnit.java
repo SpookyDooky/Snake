@@ -15,10 +15,16 @@ import java.util.ArrayList;
 public class MovingUnit extends Unit{
 
     private Direction direction;
+    private Tile lastTile;
 
     public MovingUnit(int x, int y, Direction direction){
         super(x,y);
         this.direction = direction;
+    }
+
+
+    public void initLastTile(){
+        this.lastTile = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY());
     }
 
     public Direction getDirection(){
@@ -38,8 +44,10 @@ public class MovingUnit extends Unit{
             current.getOccupants().remove(this);
             next.getOccupants().add(this);
             checkScoreUnit(next);
-            this.setX(this.getX() + this.direction.getDeltX());
-            this.setY(this.getY() + this.direction.getDeltY());
+            this.setX(next.getCoordinate().getX());
+            this.setY(next.getCoordinate().getY());
+
+            //this.setLastTile(current);
         } else {
             SnakeGame.getGameInstance().getGame().setGameState(State.GameOver);
             SnakeGame.getGameInstance().getGame().getScreen().dispose();
@@ -81,5 +89,17 @@ public class MovingUnit extends Unit{
                 SnakeGame.getGameInstance().getGame().getGameBoard().spawnRandomDot();
             }
         }
+    }
+
+    public Tile getLastTile(){
+        return this.lastTile;
+    }
+
+    public void setLastTile(Tile lastTile){
+        this.lastTile = lastTile;
+    }
+
+    public void updateLastTile(){
+        this.lastTile = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY());
     }
 }

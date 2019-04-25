@@ -75,6 +75,8 @@ public class GameController extends Timer {
         ArrayList<Unit> unitList = this.gameBoard.findUnit(SnakeHead.class);
         initSnake(unitList);
 
+        ArrayList<Unit> movingUnitList = this.gameBoard.findUnit(MovingUnit.class);
+        initLastTiles(movingUnitList);
         //Starts loop
         initTimer();
         this.start();
@@ -88,6 +90,14 @@ public class GameController extends Timer {
         }
     }
 
+    private void initLastTiles(ArrayList<Unit> unitList){
+        for(Unit unit : unitList){
+            if(unit instanceof MovingUnit){
+                ((MovingUnit) unit).initLastTile();
+            }
+        }
+    }
+
     private void initTimer(){
         this.addActionListener(new ActionListener() {
             @Override
@@ -96,6 +106,7 @@ public class GameController extends Timer {
                 screen.repaint();
                 ArrayList<Unit> movingUnits = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
                 //System.out.println(movingUnits.size());
+                updateTiles(movingUnits);
                 moveUnits(movingUnits);
 
             }
@@ -103,9 +114,18 @@ public class GameController extends Timer {
 
     }
 
+    private void updateTiles(ArrayList<Unit> unitList){
+        for(Unit unit : unitList){
+            if(unit instanceof MovingUnit){
+                ((MovingUnit) unit).updateLastTile();
+            }
+        }
+    }
+
     private void moveUnits(ArrayList<Unit> unitList){
         for(Unit unit : unitList){
             if(unit instanceof MovingUnit){
+                //System.out.println(((MovingUnit) unit).getX());
                 ((MovingUnit) unit).moveUnit();
             }
         }
