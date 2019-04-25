@@ -11,6 +11,8 @@ public class SnakeHead extends MovingUnit {
     private int length;
     private MovingUnit snakeEnd;
 
+    private SnakeBody firstSnakePart;
+
     public SnakeHead(int x, int y){
         super(x,y,Direction.South);
         this.length = 3;
@@ -32,6 +34,11 @@ public class SnakeHead extends MovingUnit {
         for(int x = 1; x <= this.length;x++){
             int newY = this.getY() - x;
             MovingUnit newNext = new SnakeBody(this.getX(),newY,this.getDirection(),next);
+
+            if(x == 1){
+                this.firstSnakePart = (SnakeBody)newNext;
+            }
+
             SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),newY).getOccupants().add(newNext);
             next = newNext;
         }
@@ -50,4 +57,9 @@ public class SnakeHead extends MovingUnit {
     public MovingUnit getSnakeEnd(){
         return this.snakeEnd;
     }
+
+    public SnakeBody getFirstSnakePart(){
+        return this.firstSnakePart;
+    }
+
 }
