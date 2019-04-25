@@ -95,10 +95,6 @@ public class MovingUnit extends Unit{
         return this.lastTile;
     }
 
-    public void setLastTile(Tile lastTile){
-        this.lastTile = lastTile;
-    }
-
     public void updateLastTile(){
         this.lastTile = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY());
     }
