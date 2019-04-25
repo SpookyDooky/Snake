@@ -3,6 +3,9 @@ package game.menus;
 import game.SnakeGame;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class MainMenu extends MenuScene{
 
@@ -11,18 +14,31 @@ public class MainMenu extends MenuScene{
         setupPlayButton();
         setupHighscoreButton();
         setupExitButton();
+        setupTitle();
     }
 
+    private void setupTitle(){
+        Text title = new Text();
+        title.setText("Snake");
+
+        title.setWrappingWidth(800);
+        title.setTextAlignment(TextAlignment.CENTER);
+
+        title.setFont(new Font("arial BOLD", 40));
+        title.setLayoutY(75);
+
+        this.getRootPane().getChildren().add(title);
+    }
     private void setupPlayButton(){
         Button playButton = new Button();
         playButton.setText("Play!");
-        
+
         playButton.setMinHeight(50);
         playButton.setMaxHeight(50);
         playButton.setMinWidth(300);
         playButton.setMaxWidth(300);
         playButton.setLayoutX(250);
-        playButton.setLayoutY(75);
+        playButton.setLayoutY(150);
 
         playButton.setFont(this.getMenuFont());
 
@@ -42,7 +58,7 @@ public class MainMenu extends MenuScene{
         highscore.setMinWidth(300);
         highscore.setMaxWidth(300);
         highscore.setLayoutX(250);
-        highscore.setLayoutY(200);
+        highscore.setLayoutY(250);
 
         highscore.setFont(this.getMenuFont());
 
@@ -61,7 +77,7 @@ public class MainMenu extends MenuScene{
         exit.setMinWidth(300);
         exit.setMaxWidth(300);
         exit.setLayoutX(250);
-        exit.setLayoutY(325);
+        exit.setLayoutY(350);
 
         exit.setFont(this.getMenuFont());
 
