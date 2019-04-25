@@ -11,7 +11,7 @@ public class SnakeHead extends MovingUnit {
 
     public SnakeHead(int x, int y){
         super(x,y,Direction.South);
-        this.length = 3;
+        this.length = 5;
     }
 
     public void increaseLength(){

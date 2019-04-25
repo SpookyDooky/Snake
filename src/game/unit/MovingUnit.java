@@ -72,9 +72,9 @@ public class MovingUnit extends Unit{
             if(unit instanceof SnakeBody){
                 SnakeBody body = (SnakeBody) unit;
                 if(body.getNextChainLink() != this){
-                    return false;
-                } else {
                     return true;
+                } else {
+                    return false;
                 }
             }
         }
