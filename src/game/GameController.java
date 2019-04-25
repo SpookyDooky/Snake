@@ -21,7 +21,7 @@ public class GameController extends Timer {
     private int score;
 
     public GameController(){
-        super(200,null);
+        super(150,null);
         this.setRepeats(true);
         this.gameState = State.Unknown;
         this.score = 0;
