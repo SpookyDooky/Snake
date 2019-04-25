@@ -2,7 +2,7 @@ package game.unit;
 
 import game.Direction;
 import game.SnakeGame;
-import game.State;
+import game.gamelogic.State;
 import game.board.GameBoard;
 import game.board.Tile;
 import game.menus.GameOver;

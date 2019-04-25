@@ -1,5 +1,6 @@
-package game;
+package game.gamelogic;
 
+import game.SnakeGame;
 import game.board.Tile;
 import game.unit.MovingUnit;
 import game.unit.ScoreUnit;
