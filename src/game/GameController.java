@@ -75,6 +75,7 @@ public class GameController extends Timer {
 
         //Starts loop
         initTimer();
+        SnakeGame.getGameInstance().getGame().setGameState(State.Playing);
         this.start();
     }
 

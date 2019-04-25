@@ -57,7 +57,13 @@ public class SnakeGame extends Application {
         return this.game;
     }
 
+    public void resetGame(){
+        this.game = new GameController();
+        this.game.setGameState(State.InMenus);
+    }
+
     public void launchGame(String mapName){
+        resetGame();
         if(game.getGameState() != State.InMenus){
             System.out.println("Something went wrong");
         } else {
