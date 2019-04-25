@@ -1,11 +1,9 @@
 package game;
 
 import game.board.GameBoard;
-import game.menus.GameOver;
 import game.unit.MovingUnit;
 import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
-import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -75,8 +73,6 @@ public class GameController extends Timer {
         ArrayList<Unit> unitList = this.gameBoard.findUnit(SnakeHead.class);
         initSnake(unitList);
 
-        ArrayList<Unit> movingUnitList = this.gameBoard.findUnit(MovingUnit.class);
-        initLastTiles(movingUnitList);
         //Starts loop
         initTimer();
         this.start();
@@ -86,14 +82,6 @@ public class GameController extends Timer {
         for(Unit unit : unitList){
             if(unit instanceof SnakeHead){
                 ((SnakeHead) unit).initSnakeStart();
-            }
-        }
-    }
-
-    private void initLastTiles(ArrayList<Unit> unitList){
-        for(Unit unit : unitList){
-            if(unit instanceof MovingUnit){
-                ((MovingUnit) unit).initLastTile();
             }
         }
     }
