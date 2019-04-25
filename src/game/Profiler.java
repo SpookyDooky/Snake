@@ -8,17 +8,17 @@ public class Profiler {
 
     private static final Profiler instance = new Profiler();
 
-    public static Profiler getInstance() {
+    protected static Profiler getInstance() {
         return instance;
     }
 
 
-    public long nanos;
-    public long delta = 1;
-    public long fps = 1;
+    private long nanos;
+    private long delta = 1;
+    private long fps = 1;
 
-    public int fpsBufferPos = 0;
-    public final long[] fpsBuffer = new long[FPS_BUFFER_SIZE];
+    private int fpsBufferPos = 0;
+    private final long[] fpsBuffer = new long[FPS_BUFFER_SIZE];
 
     public void begin() {
         nanos = System.nanoTime();
@@ -36,6 +36,6 @@ public class Profiler {
 
     @Override
     public String toString() {
-        return delta + " ns, " + (100000000 / delta) + " fps (avg " + Arrays.stream(fpsBuffer).average().getAsDouble() + ")";
+        return delta + " ns, " + fps + " fps (avg " + Arrays.stream(fpsBuffer).average().getAsDouble() + ")";
     }
 }
