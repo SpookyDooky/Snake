@@ -35,6 +35,29 @@ public class Highscores {
         }
     }
 
+    public void writeBack(){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("src" + File.separator + "highscores" + File.separator + "highscore")));
+            String amount = String.valueOf(this.highscores.size());
+            writer.write(amount);
+            writer.newLine();
+
+            for(int x = 0; x < this.highscores.size() - 1;x++){
+                HighscoreEntry currentEntry = this.highscores.get(x);
+                String newLine = currentEntry.getName() + " " + String.valueOf(currentEntry.getScore());
+                writer.write(newLine);
+                writer.newLine();
+            }
+
+            HighscoreEntry finalEntry = this.highscores.get(this.highscores.size() - 1);
+            String finalLine = finalEntry.getName() + " " + String.valueOf(finalEntry.getScore());
+            writer.write(finalLine);
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addHighscore(String name, int score){
         HighscoreEntry newEntry = new HighscoreEntry(name,score);
         this.highscores.add(newEntry);
