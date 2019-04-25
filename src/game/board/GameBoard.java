@@ -177,13 +177,10 @@ public class GameBoard {
      * @return - All units that belong to that class
      */
     public ArrayList<Unit> findUnit(Class unit){
-        Tile[][] theGridClone = this.tileGrid.clone();
         ArrayList<Unit> result = new ArrayList<>();
-        for(int x = 0; x < this.width;x++){
-            for(int y = 0; y < this.height;y++){
-                ArrayList<Unit> cloned = theGridClone[x][y].getOccupants();
-
-                for(Unit occupant : cloned){
+        for(int x = 0; x < this.width; x++){
+            for(int y = 0; y < this.height; y++){
+                for(Unit occupant : this.tileGrid[x][y].getOccupants()){
                     if(unit.isInstance(occupant)){
                         result.add(occupant);
                     }
