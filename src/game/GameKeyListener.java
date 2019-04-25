@@ -48,6 +48,12 @@ public class GameKeyListener extends KeyAdapter {
         }
     }
 
+    /**
+     * Method that takes care of changing the direction
+     * @param direction - The wanted direction
+     * @param unitList - the list of units to change it for
+     * @param head - The head of the snake
+     */
     private void changeDirection(Direction direction, ArrayList<Unit> unitList, SnakeHead head){
         if(SnakeGame.getGameInstance().getGame().getGameState() != State.Paused && notOpposite(direction,head)) {
             if (unitList.size() == 0) {
@@ -63,6 +69,12 @@ public class GameKeyListener extends KeyAdapter {
         }
     }
 
+    /**
+     * Method that makes sure the snake cant turn 180 degrees in one tick
+     * @param desired - Wanted direction
+     * @param head - Head of the snake
+     * @return - Boolean indicating if the direction is allowable
+     */
     private boolean notOpposite(Direction desired, SnakeHead head){
         Direction opposite = Direction.opposite(desired);
         return head.getDirection() != opposite;

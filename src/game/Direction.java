@@ -36,6 +36,11 @@ public enum Direction {
         return this.deltY;
     }
 
+    /**
+     * Method that returns the opposite direction
+     * @param direction - The direction
+     * @return - Returns the opposite of the direction
+     */
     public static Direction opposite(Direction direction){
         switch(direction){
             case North: return South;
