@@ -54,7 +54,7 @@ public class GameOver extends MenuScene {
         returnButton.setLayoutY(675);
 
         returnButton.setFont(this.getMenuFont());
-        
+
         returnButton.setOnMouseClicked(event -> {
             SnakeGame.getGameInstance().getMainStage().setScene(new MainMenu(new Pane()));
             SnakeGame.getGameInstance().getGame().setGameState(State.InMenus);
