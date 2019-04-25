@@ -91,13 +91,14 @@ public class GameController extends Timer {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Profiler.getInstance().begin();
                 //System.out.println("Game Tick");
                 screen.repaint();
                 ArrayList<Unit> movingUnits = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
                 //System.out.println(movingUnits.size());
                 updateTiles(movingUnits);
                 moveUnits(movingUnits);
-
+                Profiler.getInstance().end();
             }
         });
 
