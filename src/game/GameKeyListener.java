@@ -14,7 +14,6 @@ public class GameKeyListener extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         int extended = e.getExtendedKeyCode();
-        ArrayList<Unit> unitList = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
 
         SnakeGame instance = SnakeGame.getGameInstance();
         GameBoard board = instance.getGame().getGameBoard();
@@ -22,13 +21,13 @@ public class GameKeyListener extends KeyAdapter {
         SnakeHead head = (SnakeHead) snakeHead.get(0);
         //TODO - Add checks so you can't go from north to south
         if(extended == KeyEvent.VK_W){ //North
-            changeDirection(Direction.North,unitList,head);
+            changeDirection(Direction.North,head);
         } else if(extended == KeyEvent.VK_D){ //East
-            changeDirection(Direction.East,unitList,head);
+            changeDirection(Direction.East,head);
         } else if(extended == KeyEvent.VK_S){ //South
-            changeDirection(Direction.South,unitList,head);
+            changeDirection(Direction.South,head);
         } else if(extended == KeyEvent.VK_A){ //West
-            changeDirection(Direction.West,unitList,head);
+            changeDirection(Direction.West,head);
         } else if(extended == KeyEvent.VK_ESCAPE){ //Quit
             GameScreen theScreen = SnakeGame.getGameInstance().getGame().getScreen();
 
@@ -51,21 +50,11 @@ public class GameKeyListener extends KeyAdapter {
     /**
      * Method that takes care of changing the direction
      * @param direction - The wanted direction
-     * @param unitList - the list of units to change it for
      * @param head - The head of the snake
      */
-    private void changeDirection(Direction direction, ArrayList<Unit> unitList, SnakeHead head){
+    private void changeDirection(Direction direction, SnakeHead head){
         if(SnakeGame.getGameInstance().getGame().getGameState() != State.Paused && notOpposite(direction,head)) {
-            if (unitList.size() == 0) {
-                System.out.println("Unexpected empty list");
-                return;
-            }
-
-            for (Unit current : unitList) {
-                if (current instanceof SnakeHead) {
-                    ((SnakeHead) current).setDirection(direction);
-                }
-            }
+                head.setDirection(direction);
         }
     }
 
