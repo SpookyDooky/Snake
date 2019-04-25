@@ -1,5 +1,7 @@
 package game;
 
+import game.gamelogic.GameController;
+import game.gamelogic.State;
 import game.menus.MainMenu;
 import javafx.application.Application;
 import javafx.application.Platform;

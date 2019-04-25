@@ -1,9 +1,8 @@
 package game.menus;
 
 import game.SnakeGame;
-import game.State;
+import game.gamelogic.State;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
