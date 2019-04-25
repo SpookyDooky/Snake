@@ -1,6 +1,6 @@
 package game;
 
-import game.unit.MovingUnit;
+import game.board.GameBoard;
 import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
 
@@ -10,43 +10,65 @@ import java.util.ArrayList;
 
 public class GameKeyListener extends KeyAdapter {
 
+    /**
+     * Method that takes care of key events
+     * @param e - The key event
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int extended = e.getExtendedKeyCode();
-        ArrayList<Unit> unitList = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
 
+        SnakeGame instance = SnakeGame.getGameInstance();
+        GameBoard board = instance.getGame().getGameBoard();
+        ArrayList<Unit> snakeHead = board.findUnit(SnakeHead.class);
+        SnakeHead head = (SnakeHead) snakeHead.get(0);
         //TODO - Add checks so you can't go from north to south
-        if(extended == KeyEvent.VK_W){
-            changeDirection(Direction.North,unitList);
-        } else if(extended == KeyEvent.VK_D){
-            changeDirection(Direction.East,unitList);
-        } else if(extended == KeyEvent.VK_S){
-            changeDirection(Direction.South,unitList);
-        } else if(extended == KeyEvent.VK_A){
-            changeDirection(Direction.West,unitList);
-        } else if(extended == KeyEvent.VK_ESCAPE){
+        if(extended == KeyEvent.VK_W){ //North
+            changeDirection(Direction.North,head);
+        } else if(extended == KeyEvent.VK_D){ //East
+            changeDirection(Direction.East,head);
+        } else if(extended == KeyEvent.VK_S){ //South
+            changeDirection(Direction.South,head);
+        } else if(extended == KeyEvent.VK_A){ //West
+            changeDirection(Direction.West,head);
+        } else if(extended == KeyEvent.VK_ESCAPE){ //Quit
             GameScreen theScreen = SnakeGame.getGameInstance().getGame().getScreen();
+
             theScreen.dispose();
-            SnakeGame instance = SnakeGame.getGameInstance();
             instance.getGame().setGameState(State.InMenus);
             instance.getGame().stop();
-        } else if(extended == KeyEvent.VK_P){
-            //TODO - Change state to paused and make sure the game stops running
-            //TODO - Make a check that if the game is already paused then the game should be unpaused
-            SnakeGame.getGameInstance().getGame().setGameState(State.Paused);
+        } else if(extended == KeyEvent.VK_P){ //Pause
+            GameController game = instance.getGame();
+
+            if(game.getGameState() == State.Paused){
+                game.setGameState(State.Playing);
+                game.start();
+            } else if(game.getGameState() == State.Playing){
+                game.setGameState(State.Paused);
+                game.stop();
+            }
         }
     }
 
-    private void changeDirection(Direction direction, ArrayList<Unit> unitList){
-        if(unitList.size() == 0){
-            System.out.println("Unexpected empty list");
-            return;
+    /**
+     * Method that takes care of changing the direction
+     * @param direction - The wanted direction
+     * @param head - The head of the snake
+     */
+    private void changeDirection(Direction direction, SnakeHead head){
+        if(SnakeGame.getGameInstance().getGame().getGameState() != State.Paused && notOpposite(direction,head)) {
+                head.setDirection(direction);
         }
+    }
 
-        for (Unit current : unitList) {
-            if (current instanceof SnakeHead) {
-                ((SnakeHead) current).setDirection(direction);
-            }
-        }
+    /**
+     * Method that makes sure the snake cant turn 180 degrees in one tick
+     * @param desired - Wanted direction
+     * @param head - Head of the snake
+     * @return - Boolean indicating if the direction is allowable
+     */
+    private boolean notOpposite(Direction desired, SnakeHead head){
+        Direction opposite = Direction.opposite(desired);
+        return head.getDirection() != opposite;
     }
 }

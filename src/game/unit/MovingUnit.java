@@ -22,11 +22,6 @@ public class MovingUnit extends Unit{
         this.direction = direction;
     }
 
-
-    public void initLastTile(){
-        this.lastTile = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY());
-    }
-
     public Direction getDirection(){
         return this.direction;
     }
