@@ -15,23 +15,23 @@ public class GameKeyListener extends KeyAdapter {
         int extended = e.getExtendedKeyCode();
         ArrayList<Unit> unitList = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
 
+        SnakeGame instance = SnakeGame.getGameInstance();
         //TODO - Add checks so you can't go from north to south
-        if(extended == KeyEvent.VK_W){
+        if(extended == KeyEvent.VK_W){ //North
             changeDirection(Direction.North,unitList);
-        } else if(extended == KeyEvent.VK_D){
+        } else if(extended == KeyEvent.VK_D){ //East
             changeDirection(Direction.East,unitList);
-        } else if(extended == KeyEvent.VK_S){
+        } else if(extended == KeyEvent.VK_S){ //South
             changeDirection(Direction.South,unitList);
-        } else if(extended == KeyEvent.VK_A){
+        } else if(extended == KeyEvent.VK_A){ //West
             changeDirection(Direction.West,unitList);
-        } else if(extended == KeyEvent.VK_ESCAPE){
+        } else if(extended == KeyEvent.VK_ESCAPE){ //Quit
             GameScreen theScreen = SnakeGame.getGameInstance().getGame().getScreen();
+
             theScreen.dispose();
-            SnakeGame instance = SnakeGame.getGameInstance();
             instance.getGame().setGameState(State.InMenus);
             instance.getGame().stop();
-        } else if(extended == KeyEvent.VK_P){
-            SnakeGame instance = SnakeGame.getGameInstance();
+        } else if(extended == KeyEvent.VK_P){ //Pause
             GameController game = instance.getGame();
 
             if(game.getGameState() == State.Paused){
