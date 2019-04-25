@@ -2,9 +2,9 @@ package game.board;
 
 import game.Direction;
 import game.unit.MovingUnit;
-import game.unit.ScoreUnit;
 import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
+import game.unit.scoreunits.Dot;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -206,7 +206,7 @@ public class GameBoard {
 
         Tile target = tileAt(randomX,randomY);
         if(!target.isBorder()){
-            target.getOccupants().add(new ScoreUnit(randomX,randomY,1));
+            target.getOccupants().add(new Dot(randomX,randomY));
         } else {
             spawnRandomDot();
         }

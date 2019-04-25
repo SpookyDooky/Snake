@@ -1,6 +1,10 @@
 package game.unit;
 
 import game.SnakeGame;
+import game.board.GameBoard;
+import game.unit.movingunits.SnakeHead;
+
+import java.util.ArrayList;
 
 public class ScoreUnit extends Unit{
 
@@ -20,5 +24,8 @@ public class ScoreUnit extends Unit{
         game.getGame().getGameBoard().tileAt(this.getX(),this.getY()).getOccupants().remove(this);
         game.getGame().incrementScore();
 
+        GameBoard board = SnakeGame.getGameInstance().getGame().getGameBoard();
+        ArrayList<Unit> head = board.findUnit(SnakeHead.class);
+        ((SnakeHead) head.get(0)).increaseLength();
     }
 }
