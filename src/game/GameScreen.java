@@ -20,6 +20,10 @@ public class GameScreen extends JFrame {
         this.width = width;
         this.height = height;
         this.setSize(width,height);
+
+        // center frame on primary monitor (todo: choose monitor option?)
+        setLocationRelativeTo(null);
+
         this.setVisible(true);
         init();
     }

@@ -17,19 +17,22 @@ public class SnakeGame extends Application {
     private Stage mainStage;
     private Scene mainScene;
 
-
     private MainMenu mainMenu;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
         gameInstance = this;
         this.mainStage = primaryStage;
         primaryStage.setTitle("Snake");
 
         this.mainScene = new Scene(new Pane(),1000,1000);
-        primaryStage.show();
 
-        launchMenu();
+        this.mainMenu = new MainMenu(new Pane());
+        primaryStage.setScene(this.mainMenu);
+
+        primaryStage.show();
+        primaryStage.toFront();
+
         primaryStage.setOnCloseRequest(event -> {
             System.out.println("Shutting down game...");
             Platform.exit();
@@ -38,11 +41,6 @@ public class SnakeGame extends Application {
 
         this.game = new GameController();
         this.game.setGameState(State.InMenus);
-    }
-
-    private void launchMenu(){
-        this.mainMenu = new MainMenu(new Pane());
-        this.mainStage.setScene(this.mainMenu);
     }
 
     public static SnakeGame getGameInstance(){
