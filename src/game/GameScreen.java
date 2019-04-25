@@ -66,7 +66,7 @@ public class GameScreen extends JFrame {
                             for(int z = 0; z < occupants.size();z++){
                                 Unit occupant = occupants.get(z);
                                 if(occupant instanceof MovingUnit){
-                                    g.setColor(Color.red);
+                                    g.setColor(Color.RED);
                                 } else if(occupant instanceof ScoreUnit){
                                     g.setColor(Color.BLACK);
                                 }
@@ -77,6 +77,8 @@ public class GameScreen extends JFrame {
                         g.fillRect(blockWidth * x,blockHeight * y,blockWidth,blockHeight);
                     }
                 }
+                g.setColor(Color.RED);
+                g.drawString(Profiler.getInstance().toString(), 20, 20); // TODO unhardcode position
             }
         });
     }
