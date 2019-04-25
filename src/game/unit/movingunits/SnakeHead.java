@@ -13,11 +13,19 @@ public class SnakeHead extends MovingUnit {
 
     private SnakeBody firstSnakePart;
 
+    /**
+     * Basic constructor
+     * @param x - x value of the spawnlocation
+     * @param y - y value of the spawnlocation
+     */
     public SnakeHead(int x, int y){
         super(x,y,Direction.South);
         this.length = 3;
     }
 
+    /**
+     * For increasing the length of the snake
+     */
     public void increaseLength(){
         this.length++;
         addNewBlock();
@@ -26,6 +34,7 @@ public class SnakeHead extends MovingUnit {
     public void resetLength(){
         this.length = 3;
     }
+
     /*
      * Temporary snake spawn algorithm, in the future I want the orignal way of snake spawning, that it comes out of a hole in the ground.
      */
@@ -45,8 +54,10 @@ public class SnakeHead extends MovingUnit {
         this.snakeEnd = next;
     }
 
+    /**
+     * For actually adding the snakebody to the snake
+     */
     private void addNewBlock(){
-        //TODO - Might need logic in the future that prevents a sudden block in front of the head in certain cases, testing will be needed for this.
         Tile lastTileEnd = this.snakeEnd.getLastTile();
         Coordinate last = lastTileEnd.getCoordinate();
         SnakeBody newEnd = new SnakeBody(last.getX(),last.getY(),Direction.South,this.snakeEnd);
@@ -54,10 +65,17 @@ public class SnakeHead extends MovingUnit {
         lastTileEnd.getOccupants().add(newEnd);
     }
 
+    /**
+     * @return - Returns the tail of the snake
+     */
     public MovingUnit getSnakeEnd(){
         return this.snakeEnd;
     }
 
+    /**
+     * Returns the very first piece after the snake head
+     * @return - Returns a snakebody part
+     */
     public SnakeBody getFirstSnakePart(){
         return this.firstSnakePart;
     }
