@@ -33,7 +33,17 @@ public class GameKeyListener extends KeyAdapter {
         } else if(extended == KeyEvent.VK_P){
             //TODO - Change state to paused and make sure the game stops running
             //TODO - Make a check that if the game is already paused then the game should be unpaused
-            SnakeGame.getGameInstance().getGame().setGameState(State.Paused);
+            SnakeGame instance = SnakeGame.getGameInstance();
+            GameController game = instance.getGame();
+
+            if(game.getGameState() == State.Paused){
+                game.setGameState(State.Playing);
+                game.start();
+            } else if(game.getGameState() == State.Playing){
+                game.setGameState(State.Paused);
+                game.stop();
+            }
+            //SnakeGame.getGameInstance().getGame().setGameState(State.Paused);
         }
     }
 
