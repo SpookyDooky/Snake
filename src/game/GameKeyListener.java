@@ -31,8 +31,6 @@ public class GameKeyListener extends KeyAdapter {
             instance.getGame().setGameState(State.InMenus);
             instance.getGame().stop();
         } else if(extended == KeyEvent.VK_P){
-            //TODO - Change state to paused and make sure the game stops running
-            //TODO - Make a check that if the game is already paused then the game should be unpaused
             SnakeGame instance = SnakeGame.getGameInstance();
             GameController game = instance.getGame();
 
@@ -43,19 +41,20 @@ public class GameKeyListener extends KeyAdapter {
                 game.setGameState(State.Paused);
                 game.stop();
             }
-            //SnakeGame.getGameInstance().getGame().setGameState(State.Paused);
         }
     }
 
     private void changeDirection(Direction direction, ArrayList<Unit> unitList){
-        if(unitList.size() == 0){
-            System.out.println("Unexpected empty list");
-            return;
-        }
+        if(SnakeGame.getGameInstance().getGame().getGameState() != State.Paused) {
+            if (unitList.size() == 0) {
+                System.out.println("Unexpected empty list");
+                return;
+            }
 
-        for (Unit current : unitList) {
-            if (current instanceof SnakeHead) {
-                ((SnakeHead) current).setDirection(direction);
+            for (Unit current : unitList) {
+                if (current instanceof SnakeHead) {
+                    ((SnakeHead) current).setDirection(direction);
+                }
             }
         }
     }
