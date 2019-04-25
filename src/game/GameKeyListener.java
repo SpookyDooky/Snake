@@ -1,5 +1,6 @@
 package game;
 
+import game.board.GameBoard;
 import game.unit.MovingUnit;
 import game.unit.Unit;
 import game.unit.movingunits.SnakeHead;
@@ -16,15 +17,18 @@ public class GameKeyListener extends KeyAdapter {
         ArrayList<Unit> unitList = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
 
         SnakeGame instance = SnakeGame.getGameInstance();
+        GameBoard board = instance.getGame().getGameBoard();
+        ArrayList<Unit> snakeHead = board.findUnit(SnakeHead.class);
+        SnakeHead head = (SnakeHead) snakeHead.get(0);
         //TODO - Add checks so you can't go from north to south
         if(extended == KeyEvent.VK_W){ //North
-            changeDirection(Direction.North,unitList);
+            changeDirection(Direction.North,unitList,head);
         } else if(extended == KeyEvent.VK_D){ //East
-            changeDirection(Direction.East,unitList);
+            changeDirection(Direction.East,unitList,head);
         } else if(extended == KeyEvent.VK_S){ //South
-            changeDirection(Direction.South,unitList);
+            changeDirection(Direction.South,unitList,head);
         } else if(extended == KeyEvent.VK_A){ //West
-            changeDirection(Direction.West,unitList);
+            changeDirection(Direction.West,unitList,head);
         } else if(extended == KeyEvent.VK_ESCAPE){ //Quit
             GameScreen theScreen = SnakeGame.getGameInstance().getGame().getScreen();
 
@@ -44,8 +48,8 @@ public class GameKeyListener extends KeyAdapter {
         }
     }
 
-    private void changeDirection(Direction direction, ArrayList<Unit> unitList){
-        if(SnakeGame.getGameInstance().getGame().getGameState() != State.Paused) {
+    private void changeDirection(Direction direction, ArrayList<Unit> unitList, SnakeHead head){
+        if(SnakeGame.getGameInstance().getGame().getGameState() != State.Paused && notOpposite(direction,head)) {
             if (unitList.size() == 0) {
                 System.out.println("Unexpected empty list");
                 return;
@@ -57,5 +61,10 @@ public class GameKeyListener extends KeyAdapter {
                 }
             }
         }
+    }
+
+    private boolean notOpposite(Direction desired, SnakeHead head){
+        Direction opposite = Direction.opposite(desired);
+        return head.getDirection() != opposite;
     }
 }

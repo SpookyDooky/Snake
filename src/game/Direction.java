@@ -35,4 +35,13 @@ public enum Direction {
     public int getDeltY(){
         return this.deltY;
     }
+
+    public static Direction opposite(Direction direction){
+        switch(direction){
+            case North: return South;
+            case South: return North;
+            case East: return West;
+            default: return East;
+        }
+    }
 }
