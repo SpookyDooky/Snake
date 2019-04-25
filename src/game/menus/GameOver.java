@@ -24,7 +24,7 @@ public class GameOver extends MenuScene {
         scoreField.setLayoutX(250);
         scoreField.setLayoutY(75);
 
-        scoreField.setCenterShape(true);
+        scoreField.setEditable(false);
         this.getRootPane().getChildren().add(scoreField);
     }
     private void setupMainButton(){
