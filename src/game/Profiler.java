@@ -18,7 +18,6 @@ public class Profiler {
 
     public void end() {
         delta = System.nanoTime() - nanos;
-        System.out.println("END " + delta);
     }
 
     @Override
