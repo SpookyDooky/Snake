@@ -39,6 +39,6 @@ public class SnakeBody extends MovingUnit {
         currentTile.getOccupants().remove(this);
         next.getOccupants().add(this);
 
-        this.setLastTile(currentTile);
+        //this.setLastTile(currentTile);
     }
 }

@@ -106,11 +106,20 @@ public class GameController extends Timer {
                 screen.repaint();
                 ArrayList<Unit> movingUnits = SnakeGame.getGameInstance().getGame().getGameBoard().findUnit(MovingUnit.class);
                 //System.out.println(movingUnits.size());
+                updateTiles(movingUnits);
                 moveUnits(movingUnits);
 
             }
         });
 
+    }
+
+    private void updateTiles(ArrayList<Unit> unitList){
+        for(Unit unit : unitList){
+            if(unit instanceof MovingUnit){
+                ((MovingUnit) unit).updateLastTile();
+            }
+        }
     }
 
     private void moveUnits(ArrayList<Unit> unitList){

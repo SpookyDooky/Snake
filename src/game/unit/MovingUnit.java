@@ -47,7 +47,7 @@ public class MovingUnit extends Unit{
             this.setX(next.getCoordinate().getX());
             this.setY(next.getCoordinate().getY());
 
-            this.setLastTile(current);
+            //this.setLastTile(current);
         } else {
             SnakeGame.getGameInstance().getGame().setGameState(State.GameOver);
             SnakeGame.getGameInstance().getGame().getScreen().dispose();
@@ -97,5 +97,9 @@ public class MovingUnit extends Unit{
 
     public void setLastTile(Tile lastTile){
         this.lastTile = lastTile;
+    }
+
+    public void updateLastTile(){
+        this.lastTile = SnakeGame.getGameInstance().getGame().getGameBoard().tileAt(this.getX(),this.getY());
     }
 }
