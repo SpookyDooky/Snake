@@ -1,5 +1,7 @@
 package game.menus;
 
+import game.HighscoreEntry;
+import game.Highscores;
 import game.SnakeGame;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -7,12 +9,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+import java.util.ArrayList;
+
 public class HighscoreMenu extends MenuScene{
 
     public HighscoreMenu(Pane root) {
         super(root);
         setupTitle();
         setupBackButton();
+        setupScores();
     }
 
     private void setupTitle(){
@@ -26,6 +31,27 @@ public class HighscoreMenu extends MenuScene{
         title.setLayoutY(75);
 
         this.getRootPane().getChildren().add(title);
+    }
+
+    private void setupScores(){
+        Text highscoreText = new Text();
+        Highscores currentScores = SnakeGame.getGameInstance().getHighscores();
+
+        ArrayList<HighscoreEntry> entries = currentScores.getEntries();
+        String highscoreString = "";
+        for(int x = 0; x < 3;x++){
+            HighscoreEntry currentEntry = entries.get(x);
+            String entryString = String.valueOf(x) + ". " + currentEntry.getName() + " " + currentEntry.getScore() + "\n";
+            highscoreString += entryString;
+        }
+
+        highscoreText.setText(highscoreString);
+        highscoreText.setWrappingWidth(800);
+        highscoreText.setTextAlignment(TextAlignment.CENTER);
+        highscoreText.setFont(this.getMenuFont());
+
+        highscoreText.setLayoutY(150);
+        this.getRootPane().getChildren().add(highscoreText);
     }
 
     private void setupBackButton(){
