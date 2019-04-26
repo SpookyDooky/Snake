@@ -21,6 +21,8 @@ public class SnakeGame extends Application {
 
     private MainMenu mainMenu;
 
+    private Highscores highscores;
+
     @Override
     public void start(final Stage primaryStage) throws Exception {
         gameInstance = this;
@@ -76,5 +78,14 @@ public class SnakeGame extends Application {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void initHighscores(){
+        this.highscores = new Highscores();
+        this.highscores.init();
+    }
+
+    public Highscores getHighscores(){
+        return this.highscores;
     }
 }

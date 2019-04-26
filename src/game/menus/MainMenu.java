@@ -64,6 +64,8 @@ public class MainMenu extends MenuScene{
 
         highscore.setOnMouseClicked(event -> {
             System.out.println("Show highscores");
+            SnakeGame.getGameInstance().initHighscores();
+            SnakeGame.getGameInstance().getMainStage().setScene(new HighscoreMenu(new Pane()));
         });
         this.getRootPane().getChildren().add(highscore);
     }

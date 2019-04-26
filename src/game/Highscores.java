@@ -62,4 +62,8 @@ public class Highscores {
         HighscoreEntry newEntry = new HighscoreEntry(name,score);
         this.highscores.add(newEntry);
     }
+
+    public ArrayList<HighscoreEntry> getEntries(){
+        return this.highscores;
+    }
 }

@@ -203,7 +203,7 @@ public class GameBoard {
         int randomY = (int) (Math.random() * this.height);
 
         Tile target = tileAt(randomX,randomY);
-        if(!target.isBorder()){
+        if(!target.isBorder() && target.getOccupants().size() == 0){
             target.getOccupants().add(new Dot(randomX,randomY));
         } else {
             spawnRandomDot();
