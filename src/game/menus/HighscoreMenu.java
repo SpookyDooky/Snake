@@ -39,10 +39,24 @@ public class HighscoreMenu extends MenuScene{
 
         ArrayList<HighscoreEntry> entries = currentScores.getEntries();
         String highscoreString = "";
-        for(int x = 0; x < 3;x++){
-            HighscoreEntry currentEntry = entries.get(x);
+
+        int amount = 10;
+        int fillerBuff = 0;
+        if(entries.size() < 10){
+            amount = entries.size();
+            fillerBuff = 10 - amount;
+        }
+
+        for(int x = 1; x <= amount;x++){
+            HighscoreEntry currentEntry = entries.get(x-1);
             String entryString = String.valueOf(x) + ". " + currentEntry.getName() + " " + currentEntry.getScore() + "\n";
             highscoreString += entryString;
+        }
+
+        for(int x = 1; x <= fillerBuff;x++){
+            int spot = amount + x;
+            String entry = String.valueOf(spot) + "\n";
+            highscoreString += entry;
         }
 
         highscoreText.setText(highscoreString);
