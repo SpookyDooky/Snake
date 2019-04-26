@@ -34,11 +34,16 @@ public class HighscoreMenu extends MenuScene{
     }
 
     private void setupScores(){
-        Text highscoreText = new Text();
+        Text highscoreRank = new Text();
+        Text highscoreName = new Text();
+        Text highscoreScore = new Text();
+
         Highscores currentScores = SnakeGame.getGameInstance().getHighscores();
 
         ArrayList<HighscoreEntry> entries = currentScores.getEntries();
-        String highscoreString = "";
+        String rankString = "";
+        String nameString = "";
+        String scoreString = "";
 
         int amount = 10;
         int fillerBuff = 0;
@@ -49,23 +54,42 @@ public class HighscoreMenu extends MenuScene{
 
         for(int x = 1; x <= amount;x++){
             HighscoreEntry currentEntry = entries.get(x-1);
-            String entryString = String.valueOf(x) + ". " + currentEntry.getName() + " " + currentEntry.getScore() + "\n";
-            highscoreString += entryString;
+            rankString += String.valueOf(x) + "\n";
+            nameString += currentEntry.getName() + "\n";
+            scoreString += String.valueOf(currentEntry.getScore()) + "\n";
         }
 
         for(int x = 1; x <= fillerBuff;x++){
             int spot = amount + x;
-            String entry = String.valueOf(spot) + "\n";
-            highscoreString += entry;
+            rankString += String.valueOf(spot) + "\n";
         }
 
-        highscoreText.setText(highscoreString);
-        highscoreText.setWrappingWidth(800);
-        highscoreText.setTextAlignment(TextAlignment.CENTER);
-        highscoreText.setFont(this.getMenuFont());
+        highscoreRank.setText(rankString);
+        highscoreName.setText(nameString);
+        highscoreScore.setText(scoreString);
 
-        highscoreText.setLayoutY(150);
-        this.getRootPane().getChildren().add(highscoreText);
+        highscoreRank.setWrappingWidth(250);
+        highscoreName.setWrappingWidth(300);
+        highscoreScore.setWrappingWidth(250);
+
+        highscoreRank.setTextAlignment(TextAlignment.CENTER);
+        highscoreName.setTextAlignment(TextAlignment.CENTER);
+        highscoreScore.setTextAlignment(TextAlignment.CENTER);
+
+        highscoreRank.setFont(this.getMenuFont());
+        highscoreName.setFont(this.getMenuFont());
+        highscoreScore.setFont(this.getMenuFont());
+
+        highscoreRank.setLayoutY(150);
+        highscoreName.setLayoutY(150);
+        highscoreScore.setLayoutY(150);
+
+        highscoreName.setLayoutX(250);
+        highscoreScore.setLayoutX(550);
+
+        this.getRootPane().getChildren().add(highscoreRank);
+        this.getRootPane().getChildren().add(highscoreName);
+        this.getRootPane().getChildren().add(highscoreScore);
     }
 
     private void setupBackButton(){
