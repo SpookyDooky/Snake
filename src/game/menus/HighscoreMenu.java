@@ -17,6 +17,7 @@ public class HighscoreMenu extends MenuScene{
         super(root);
         setupTitle();
         setupBackButton();
+        setupHeaders();
         setupScores();
     }
 
@@ -31,6 +32,39 @@ public class HighscoreMenu extends MenuScene{
         title.setLayoutY(75);
 
         this.getRootPane().getChildren().add(title);
+    }
+
+    private void setupHeaders(){
+        Text header1 = new Text();
+        Text header2 = new Text();
+        Text header3 = new Text();
+
+        header1.setText("Rank");
+        header2.setText("Name");
+        header3.setText("Score");
+
+        header1.setWrappingWidth(250);
+        header2.setWrappingWidth(300);
+        header3.setWrappingWidth(250);
+
+        header1.setTextAlignment(TextAlignment.CENTER);
+        header2.setTextAlignment(TextAlignment.CENTER);
+        header3.setTextAlignment(TextAlignment.CENTER);
+
+        header1.setFont(this.getMenuFont());
+        header2.setFont(this.getMenuFont());
+        header3.setFont(this.getMenuFont());
+
+        header1.setLayoutY(125);
+        header2.setLayoutY(125);
+        header3.setLayoutY(125);
+
+        header2.setLayoutX(250);
+        header3.setLayoutX(550);
+
+        this.getRootPane().getChildren().add(header1);
+        this.getRootPane().getChildren().add(header2);
+        this.getRootPane().getChildren().add(header3);
     }
 
     private void setupScores(){
@@ -80,9 +114,9 @@ public class HighscoreMenu extends MenuScene{
         highscoreName.setFont(this.getMenuFont());
         highscoreScore.setFont(this.getMenuFont());
 
-        highscoreRank.setLayoutY(150);
-        highscoreName.setLayoutY(150);
-        highscoreScore.setLayoutY(150);
+        highscoreRank.setLayoutY(175);
+        highscoreName.setLayoutY(175);
+        highscoreScore.setLayoutY(175);
 
         highscoreName.setLayoutX(250);
         highscoreScore.setLayoutX(550);
