@@ -60,7 +60,14 @@ public class Highscores {
 
     public void addHighscore(String name, int score){
         HighscoreEntry newEntry = new HighscoreEntry(name,score);
-        this.highscores.add(newEntry);
+        int index = 0;
+        for(int x = 0; x < this.highscores.size();x++){
+            int scoreEntry = this.highscores.get(x).getScore();
+            if(score == scoreEntry){
+                index = x;
+            }
+        }
+        this.highscores.add(index,newEntry);
     }
 
     public ArrayList<HighscoreEntry> getEntries(){
